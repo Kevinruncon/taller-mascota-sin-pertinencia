@@ -761,19 +761,29 @@ public class VentanaRegistro extends javax.swing.JFrame {
         String nombre = txtNombre.getText().trim();
         String especie = comboEspecie.getSelectedItem() != null ? comboEspecie.getSelectedItem().toString() : "";
 
-        int id = Integer.parseInt(txtId.getText().trim());
-        int edad = Integer.parseInt(txtEdad.getText().trim());
+        String idStr = txtId.getText().trim();
+        String edadStr = txtEdad.getText().trim();
         String documento = txtDocuPropietario.getText().trim();
 
         if (nombre == null || nombre.isBlank()
                 || especie == null || especie.isBlank()
-                || documento == null || documento.isBlank()) {
+                || documento == null || documento.isBlank() || idStr == null || idStr.isBlank()
+                || edadStr == null || edadStr.isBlank()) {
             JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         } 
+        int id, edad;
+    try {
+        id = Integer.parseInt(idStr);
+        edad = Integer.parseInt(edadStr);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "ID y Edad deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
         if(id <= 0  || edad <= 0) {
             JOptionPane.showMessageDialog(this, "No se pueden agregar datos con valores negativos", "Advertencia", JOptionPane.WARNING_MESSAGE);
-
+            return;
         }
 
         Propietario prop = controladorPropietario.buscarPropietario(documento);

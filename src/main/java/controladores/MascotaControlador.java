@@ -26,7 +26,6 @@ public class MascotaControlador {
         return false;
     }      
           dao.guardarMascota(mascota);
-          dao.actualizarMascota(mascota); 
           return true;
 }
 
