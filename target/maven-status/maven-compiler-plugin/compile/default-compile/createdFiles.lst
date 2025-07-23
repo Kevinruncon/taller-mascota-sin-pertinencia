@@ -16,6 +16,7 @@ vistas\VentanaRegistro$12.class
 daos\DaoPropietario.class
 vistas\VentanaRegistro$4.class
 persistencia\ArchivoManager.class
+vistas\VentanaRegistro$18.class
 dto\DtoPersona.class
 vistas\VentanaServicios$2.class
 daos\DaoMascotas.class

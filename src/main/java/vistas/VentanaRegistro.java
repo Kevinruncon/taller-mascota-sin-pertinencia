@@ -143,6 +143,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         txtDocumentoPropieta = new javax.swing.JTextField();
         ComboEspecialida2 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -435,6 +436,13 @@ public class VentanaRegistro extends javax.swing.JFrame {
             }
         });
 
+        Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRegistradosLayout = new javax.swing.GroupLayout(panelRegistrados);
         panelRegistrados.setLayout(panelRegistradosLayout);
         panelRegistradosLayout.setHorizontalGroup(
@@ -466,13 +474,18 @@ public class VentanaRegistro extends javax.swing.JFrame {
                     .addGroup(panelRegistradosLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelRegistradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
                             .addGroup(panelRegistradosLayout.createSequentialGroup()
                                 .addComponent(bttBuscar)
                                 .addGap(39, 39, 39)
-                                .addComponent(bttEliminar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttEditar)))
+                                .addComponent(bttEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bttEditar))
+                            .addGroup(panelRegistradosLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(Actualizar)
+                                .addGap(33, 33, 33)
+                                .addComponent(jButton1)
+                                .addGap(51, 51, 51)))))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -517,7 +530,9 @@ public class VentanaRegistro extends javax.swing.JFrame {
                             .addComponent(bttEliminar)
                             .addComponent(bttEditar))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addGroup(panelRegistradosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(Actualizar))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(panelRegistradosLayout.createSequentialGroup()
@@ -755,18 +770,23 @@ public class VentanaRegistro extends javax.swing.JFrame {
                 || documento == null || documento.isBlank()) {
             JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
-        } else if (id <= 0 || edad <= 0) {
+        } 
+        if(id <= 0  || edad <= 0) {
             JOptionPane.showMessageDialog(this, "No se pueden agregar datos con valores negativos", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
         }
 
         Propietario prop = controladorPropietario.buscarPropietario(documento);
-        if (prop == null) {
+        DtoMascota confirmacionMas = controladorMascota.buscarMascota(id);
+
+        if (prop == null ) {
             JOptionPane.showMessageDialog(this, " propietario no encontrado, porfavor registrar un propietario primero", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if (confirmacionMas != null){
+            JOptionPane.showMessageDialog(this, "Ya existe una mascota con el ID:" + id);
             return;
         }
         DtoMascota nuevaMascota = new DtoMascota(nombre, especie, edad,id,documento);
-        
         boolean confirmacion = controladorMascota.guardarMascota(nuevaMascota);
 
         if (confirmacion) {
@@ -964,6 +984,11 @@ public class VentanaRegistro extends javax.swing.JFrame {
     private void comboEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEspecieActionPerformed
     }//GEN-LAST:event_comboEspecieActionPerformed
 
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+    ListarMascota();
+
+    }//GEN-LAST:event_ActualizarActionPerformed
+
     private void limpiarCampos() {
         txtDoc.setText(null);
         txtNomProp.setText(null);
@@ -1006,6 +1031,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
     private javax.swing.JComboBox<String> ComboEspecialida2;
     private javax.swing.JButton btnBuscarResgitroProp;
     private javax.swing.JButton btnEditarProp;

@@ -1,1 +1,3 @@
 kllkj,Gato,8,12345,123456
+massss,Perro,8,123,123456
+parlin,Gato,8,123456,123456

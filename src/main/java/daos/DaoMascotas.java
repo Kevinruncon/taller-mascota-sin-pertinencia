@@ -22,6 +22,7 @@ public class DaoMascotas {
 
     public DaoMascotas() {
     archivo = new ArchivoManager("data/mascotas.txt");
+    listaMascotas = getMascotas();
 
     }
     
