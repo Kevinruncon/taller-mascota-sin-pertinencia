@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Mascotas;
 import modelo.Propietario;
 import controladores.PropietarioControlador;
+import dto.DtoMascota;
 import vistas.VentanaPrincipal;
 
 /**
@@ -57,16 +58,16 @@ public class VentanaRegistro extends javax.swing.JFrame {
         String[] columnas = {"ID", "Nombre", "Especie", "Edad", "Documento Propietario"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-        ArrayList<Mascotas> lista = controladorMascota.obtenerTodasMascotas();
+        ArrayList<DtoMascota> lista = controladorMascota.obtenerTodasMascotas();
 
         if (lista != null && !lista.isEmpty()) {
-            for (Mascotas m : lista) {
+            for (DtoMascota m : lista) {
                 Object[] fila = {
                     m.getId(),
                     m.getNombre(),
                     m.getEspecie(),
                     m.getEdad(),
-                    m.getDocumentoProp()
+                    m.getDocumentoPropietario()
                 };
                 modelo.addRow(fila);
             }
@@ -764,9 +765,8 @@ public class VentanaRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, " propietario no encontrado, porfavor registrar un propietario primero", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Mascotas nuevaMascota = new Mascotas(nombre, especie, edad, id);
-        nuevaMascota.setDocumentoProp(documento);
-
+        DtoMascota nuevaMascota = new DtoMascota(nombre, especie, edad,id,documento);
+        
         boolean confirmacion = controladorMascota.guardarMascota(nuevaMascota);
 
         if (confirmacion) {
@@ -817,13 +817,14 @@ public class VentanaRegistro extends javax.swing.JFrame {
         if (fila != -1 && fila >= 0) {
 
             int id  = Integer.parseInt(tablamas.getValueAt(fila, 0).toString());
-            Mascotas mascota = controladorMascota.buscarMascota(id);
+            DtoMascota mascota = controladorMascota.buscarMascota(id);
          if (mascota != null) {
         int idActual = mascota.getId();
         String nuevoNombre = JOptionPane.showInputDialog(this, "Nuevo nombre:");
         String nuevaEspecie = JOptionPane.showInputDialog(this, "Nueva Especie:\n(Recomendacion ingresar la especie (Perro o Gato) en mayuscula)");
         int nuevaEdad = Integer.parseInt(JOptionPane.showInputDialog(this, "Nueva Edad:"));
-          boolean editado = controladorMascota.editarMascota(idActual, nuevoNombre, nuevaEspecie, nuevaEdad);
+        String documento = mascota.getDocumentoPropietario();
+          boolean editado = controladorMascota.editarMascota(idActual, nuevoNombre, nuevaEspecie, nuevaEdad,documento);
                 if (editado) {
                     JOptionPane.showMessageDialog(this, "La mascota fue editado correctamente.");
                     ListarMascota();
@@ -852,7 +853,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         if (id <= 0) {
             JOptionPane.showMessageDialog(this, "El valor ingresado en el campo ID no es válido.");
         } else {
-            Mascotas mascota = controladorMascota.buscarMascota(id);
+            DtoMascota mascota = controladorMascota.buscarMascota(id);
 
             if (mascota != null) {
                 JOptionPane.showMessageDialog(this,
@@ -860,14 +861,14 @@ public class VentanaRegistro extends javax.swing.JFrame {
                         + "\nId Mascota: " + mascota.getId()
                         + "\nEspecie Mascota: " + mascota.getEspecie()
                         + "\nEdad Mascota: " + mascota.getEdad()
-                        + "\nDocumento Propietario: " + mascota.getDocumentoProp()
+                        + "\nDocumento Propietario: " + mascota.getDocumentoPropietario()
                 );
 
                 txtBNombre.setText(mascota.getNombre());
                 txtBId.setText(String.valueOf(mascota.getId()));
                 ComboEspecialida2.setSelectedItem(mascota.getEspecie());
                 txtBEdad.setText(String.valueOf(mascota.getEdad()));
-                txtDocumentoPropieta.setText(mascota.getDocumentoProp());
+                txtDocumentoPropieta.setText(mascota.getDocumentoPropietario());
             } else {
                 JOptionPane.showMessageDialog(this, "Mascota no encontrada.");
             }
@@ -881,7 +882,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
             return;
         }
         int id = Integer.parseInt(tablamas.getValueAt(fila, 0).toString());
-        Mascotas mascota = controladorMascota.buscarMascota(id);
+        DtoMascota mascota = controladorMascota.buscarMascota(id);
 
         if (mascota != null) {
             boolean eliminado = controladorMascota.eliminarMascota(id);

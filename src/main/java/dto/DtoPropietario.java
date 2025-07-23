@@ -83,5 +83,22 @@ public class DtoPropietario extends DtoPersona {
     public ArrayList<Mascotas> getMascotas() {
         return new ArrayList<>(mascotas);
     }
+ /*
+    public String toLineaArchivo() {
+        return nombre + "," + especie + "," + edad + "," + Id;
+    }
 
+    public static DtoMascota desdeLineaArchivo(String linea) {
+        String[] partes = linea.split(",");
+        if (partes.length != 3) return null;
+        try {
+            int edad = Integer.parseInt(partes[2]);
+            int id = Integer.parseInt(partes[3]);
+            return new DtoMascota(partes[0], partes[1], edad,id);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    
+
+    }*/
 }

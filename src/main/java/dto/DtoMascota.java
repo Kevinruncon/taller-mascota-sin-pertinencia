@@ -6,6 +6,7 @@ package dto;
 
 import modelo.Consulta;
 import modelo.Historial;
+import modelo.Mascotas;
 
 /**
  *
@@ -21,7 +22,7 @@ public class DtoMascota {
     private Historial historial;
     private String documentoPropietario;
 
-    public DtoMascota(String nombre, String especie, int edad, int Id) {
+    public DtoMascota(String nombre, String especie,int edad, int id, String documentoPropietario) {
         /*this.nombre = nombre;
         this.especie = especie;
         this.edad = edad;
@@ -30,7 +31,9 @@ public class DtoMascota {
         setNombre(nombre);
         setEspecie(especie);
         setEdad(edad);
-        setId(Id);
+        setId(id);
+        setDocumentoPropietario(documentoPropietario);
+        
         this.historial = new Historial();
     }
 
@@ -97,19 +100,34 @@ public class DtoMascota {
     public String getEspecie() {
         return especie;
     }
-
+    
     public int getEdad() {
         return edad;
     }
-     public String getDocumentoProp() {
+     public String getDocumentoPropietario() {
         return documentoPropietario;
     }
 
-    public void setDocumentoProp(String documentoProp) {
-      if(documentoProp == null || documentoProp.length() < 5){
+    public void setDocumentoPropietario(String documentoPropietario) {
+      if(documentoPropietario == null || documentoPropietario.length() < 5){
             throw new IllegalArgumentException("Documento invalido, revise bien su documento");
         }
-        this.documentoPropietario = documentoProp;
+        this.documentoPropietario = documentoPropietario;
+    }
+    public String toLineaArchivo() {
+        return nombre + "," + especie + "," + edad + "," + Id + "," + documentoPropietario;
+    }
+
+    public static DtoMascota desdeLineaArchivo(String linea) {
+        String[] partes = linea.split(",");
+        if (partes.length != 5) return null;
+        try {
+            int edad = Integer.parseInt(partes[2]);
+            int id = Integer.parseInt(partes[3]);
+            return new DtoMascota(partes[0], partes[1],edad,id,partes[4]);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
 

@@ -9,6 +9,7 @@ import modelo.Veterinario;
 import javax.swing.table.DefaultTableModel;
 import controladores.ConsultaControlador;
 import controladores.MascotaControlador;
+import dto.DtoMascota;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import modelo.Consulta;
@@ -76,24 +77,22 @@ public class VentanaMedicina extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtMedicinaNomProp = new javax.swing.JTextField();
         txtMedicinaIdMas = new javax.swing.JTextField();
         txtMedicinaCodigo = new javax.swing.JTextField();
         txtMedicinaTartamiento = new javax.swing.JTextField();
         txtMedicinaDiagnostico = new javax.swing.JTextField();
         btnMedicinaGurdar = new javax.swing.JButton();
-        comboboxVet = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaMedicina = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaConsulta = new javax.swing.JTable();
+        btnVolverVentanPrincipal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(202, 210, 197));
@@ -104,24 +103,13 @@ public class VentanaMedicina extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Medicina");
 
-        jLabel2.setText("Documento Propietario:");
-
         jLabel3.setText("Id de la Mascota:");
 
         jLabel4.setText("Codigo:");
 
-        jLabel5.setText("Nombre Veterinario:");
-
         jLabel6.setText("Tratamiento:");
 
         jLabel7.setText("Diagnostico:");
-
-        txtMedicinaNomProp.setText("jTextField1");
-        txtMedicinaNomProp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMedicinaNomPropActionPerformed(evt);
-            }
-        });
 
         txtMedicinaIdMas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,20 +117,12 @@ public class VentanaMedicina extends javax.swing.JFrame {
             }
         });
 
-        txtMedicinaCodigo.setText("jTextField3");
-
-        txtMedicinaTartamiento.setText("jTextField5");
-
-        txtMedicinaDiagnostico.setText("jTextField6");
-
-        btnMedicinaGurdar.setText("jButton1");
+        btnMedicinaGurdar.setText("Registrar");
         btnMedicinaGurdar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMedicinaGurdarActionPerformed(evt);
             }
         });
-
-        comboboxVet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tablaMedicina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,46 +137,47 @@ public class VentanaMedicina extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaMedicina);
 
+        jLabel8.setText("LLenar Los siguientes campos para registrar una Consulta");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMedicinaGurdar)
+                .addGap(173, 173, 173))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(40, 40, 40)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtMedicinaNomProp)
-                        .addComponent(txtMedicinaIdMas)
-                        .addComponent(txtMedicinaCodigo)
-                        .addComponent(txtMedicinaTartamiento)
-                        .addComponent(txtMedicinaDiagnostico))
-                    .addComponent(comboboxVet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnMedicinaGurdar)
-                        .addGap(173, 173, 173))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(73, 73, 73)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMedicinaIdMas)
+                            .addComponent(txtMedicinaCodigo)
+                            .addComponent(txtMedicinaTartamiento)
+                            .addComponent(txtMedicinaDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtMedicinaNomProp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(27, 27, 27)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtMedicinaIdMas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -206,21 +187,14 @@ public class VentanaMedicina extends javax.swing.JFrame {
                             .addComponent(txtMedicinaCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(comboboxVet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtMedicinaTartamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(txtMedicinaDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnMedicinaGurdar)))
+                            .addComponent(txtMedicinaDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)))
+                .addComponent(btnMedicinaGurdar)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -244,7 +218,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(308, Short.MAX_VALUE)
+                .addContainerGap(330, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -258,18 +232,31 @@ public class VentanaMedicina extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Gestion de Consultas", jPanel4);
 
+        btnVolverVentanPrincipal.setText("menu");
+        btnVolverVentanPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverVentanPrincipalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVolverVentanPrincipal)
+                .addContainerGap())
             .addComponent(jTabbedPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(btnVolverVentanPrincipal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -294,10 +281,6 @@ public class VentanaMedicina extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMedicinaNomPropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMedicinaNomPropActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMedicinaNomPropActionPerformed
-
     
   
     
@@ -318,7 +301,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Porfavor selecciona un veterinario para continuar con el registro");
         return;
 }  
-    Mascotas m = controladorMascota.buscarMascota(idMas);
+    DtoMascota m = controladorMascota.buscarMascota(idMas);
     if(m == null){
         JOptionPane.showMessageDialog(this, "No existe la mascota con el id:" + idMas);
         return;
@@ -330,7 +313,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
 
       Consulta confirmar = controladorConsulta.buscarConsulta(codigo);
       if(confirmar == null){
-         controladorConsulta.registrarConsulta(codigo, LocalDate.now().toString(), vetFin, m.getDocumentoProp(), m.getNombre(), diagnostico, tratamiento);
+         controladorConsulta.registrarConsulta(codigo, LocalDate.now().toString(), vetFin, m.getDocumentoPropietario(), m.getNombre(), diagnostico, tratamiento);
           ListarConsulta();
          JOptionPane.showMessageDialog(this, "La consulta se guardo correctamente.");
 }else{
@@ -350,8 +333,16 @@ public class VentanaMedicina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMedicinaGurdarActionPerformed
 
     private void txtMedicinaIdMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMedicinaIdMasActionPerformed
-        // TODO add your handling code here:
+    this.setVisible(false);
+   ventanaServicios.setVisible(true);
+
     }//GEN-LAST:event_txtMedicinaIdMasActionPerformed
+
+    private void btnVolverVentanPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVentanPrincipalActionPerformed
+
+
+
+    }//GEN-LAST:event_btnVolverVentanPrincipalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,14 +371,13 @@ public class VentanaMedicina extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMedicinaGurdar;
-    private javax.swing.JComboBox<String> comboboxVet;
+    private javax.swing.JButton btnVolverVentanPrincipal;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -399,7 +389,6 @@ public class VentanaMedicina extends javax.swing.JFrame {
     private javax.swing.JTextField txtMedicinaCodigo;
     private javax.swing.JTextField txtMedicinaDiagnostico;
     private javax.swing.JTextField txtMedicinaIdMas;
-    private javax.swing.JTextField txtMedicinaNomProp;
     private javax.swing.JTextField txtMedicinaTartamiento;
     // End of variables declaration//GEN-END:variables
 }

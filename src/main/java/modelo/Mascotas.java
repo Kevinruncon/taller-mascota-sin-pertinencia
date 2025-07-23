@@ -60,28 +60,14 @@ public class Mascotas {
     public int getEdad() {
         return edad;
     }
-     public String getDocumentoProp() {
+     public String getDocumentoPropietario() {
         return documentoPropietario;
     }
 
-    public void setDocumentoProp(String documentoProp) {
-        this.documentoPropietario = documentoProp;
+    public void setDocumentoPropietario(String documentoPropietario) {
+        this.documentoPropietario = documentoPropietario;
     }
 
-    public String toLineaArchivo() {
-        return nombre + "," + especie + "," + edad + "," + Id;
-    }
-
-    public static Mascotas desdeLineaArchivo(String linea) {
-        String[] partes = linea.split(",");
-        if (partes.length != 3) return null;
-        try {
-            int edad = Integer.parseInt(partes[2]);
-            int id = Integer.parseInt(partes[3]);
-            return new Mascotas(partes[0], partes[1], edad,id);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
+   
 }
 
