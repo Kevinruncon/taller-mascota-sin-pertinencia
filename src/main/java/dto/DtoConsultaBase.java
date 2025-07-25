@@ -17,7 +17,7 @@ public abstract class DtoConsultaBase implements Serializable{
     LocalDate fecha;
     int idMas;
     String codigo ;
-
+    
     public DtoConsultaBase(String fecha, int idMas, String codigo) {
         setFecha(fecha);
         setIdMas(idMas);

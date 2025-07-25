@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import vistas.VentanaRegistro;
 import vistas.VentanaPrincipal;
 import vistas.VentanaServicios;
+import controladores.ControladorConsultaBase;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -21,6 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    private VentanaServicios ventanaServicios;
    private MascotaControlador controladorMascota;
    private PropietarioControlador controladorPropietario;
+   private ControladorConsultaBase controladorConsultaBase;
     public VentanaPrincipal() {
         initComponents();
         setTitle("Sistema de Gestión Clínica Veterinaria");
@@ -32,7 +34,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         controladorPropietario = new PropietarioControlador();
         
         ventanaRegistro = new VentanaRegistro(this, controladorMascota, controladorPropietario);
-        ventanaServicios = new VentanaServicios(this, controladorMascota);
+        ventanaServicios = new VentanaServicios(this, controladorMascota, controladorConsultaBase);
         
     }
 

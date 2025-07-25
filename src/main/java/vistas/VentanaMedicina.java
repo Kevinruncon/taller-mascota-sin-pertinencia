@@ -29,10 +29,10 @@ public class VentanaMedicina extends javax.swing.JFrame {
     private VentanaServicios ventanaServicios;
     private MascotaControlador controladorMascota;
     
-    public VentanaMedicina(VentanaServicios ventanaServicios,MascotaControlador controladorMascota) {
+    public VentanaMedicina(VentanaServicios ventanaServicios,MascotaControlador controladorMascota, ControladorConsultaBase controladorConsultaBase) {
         this.ventanaServicios = ventanaServicios;
         this.controladorMascota = controladorMascota;
-        this.controladorConsultaBase = new ControladorConsultaBase();
+        this.controladorConsultaBase = controladorConsultaBase;
         initComponents();
         listarConsultas();
         setTitle("Gestion de Consultas");

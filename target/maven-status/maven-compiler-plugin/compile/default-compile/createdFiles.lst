@@ -4,6 +4,7 @@ dto\DtoConsultaBase.class
 vistas\VentanaServicios$3.class
 vistas\VentanaRegistro$5.class
 vistas\VentanaMedicina$3.class
+vistas\VentanaVacuna$1.class
 vistas\VentanaRegistro$1.class
 controladores\PropietarioControlador.class
 modelo\IdGenerator.class
@@ -26,6 +27,7 @@ daos\DaoMascotas.class
 com\mycompany\registromascotas\RegistroMascotas.class
 vistas\VentanaMedicina$2.class
 vistas\VentanaRegistro$11.class
+vistas\VentanaVacuna$2.class
 modelo\Veterinario.class
 daos\DaoVacuna.class
 controladores\ConsultaControlador.class
@@ -44,6 +46,7 @@ vistas\VentanaRegistro$3.class
 vistas\VentanaRegistro$6.class
 modelo\Mascotas.class
 dto\DtoMascota.class
+vistas\VentanaVacuna$3.class
 vistas\VentanaRegistro$13.class
 vistas\VentanaRegistro.class
 daos\DaoConsultaBase.class

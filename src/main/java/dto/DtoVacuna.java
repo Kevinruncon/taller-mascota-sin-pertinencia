@@ -4,6 +4,7 @@
  */
 package dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -11,7 +12,7 @@ import java.time.format.DateTimeParseException;
  *
  * @author Kevin
  */
-public class DtoVacuna extends DtoConsultaBase{
+public class DtoVacuna extends DtoConsultaBase implements Serializable{
     private String tipo;
     private String lote;
     private LocalDate proximaDosis;
@@ -55,34 +56,37 @@ public class DtoVacuna extends DtoConsultaBase{
         }
     }
 
+
+ public LocalDate getProximaDosis() {
+        return proximaDosis;
+}
+
     // Getter y Setter para fechaAplicacion
-   /* public LocalDate getFechaAplicacion() {
-        return fechaAplicacion;
+    /* public LocalDate getFechaAplicacion() {
+    return fechaAplicacion;
     }
-
     public void setFechaAplicacion(LocalDate fechaAplicacion) {
-        if (fechaAplicacion != null) {
-            this.fechaAplicacion = fechaAplicacion;
-        }
+    if (fechaAplicacion != null) {
+    this.fechaAplicacion = fechaAplicacion;
     }
-
+    }
     // Getter y Setter para proximaDosis
     public LocalDate getProximaDosis() {
-        return proximaDosis;
+    return proximaDosis;
     }*/
 
- public void setProximaDosis(String proximaDosis) {
-    if (proximaDosis == null || proximaDosis.trim().isEmpty()) {
-        this.proximaDosis = null; // o decide si deberías lanzar excepción
-        return;
+    public void setProximaDosis(String proximaDosis) {
+        if (proximaDosis == null || proximaDosis.trim().isEmpty()) {
+            this.proximaDosis = null; // o decide si deberías lanzar excepción
+            return;
+        }
+        
+        try {
+            this.proximaDosis = LocalDate.parse(proximaDosis);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Formato de fecha inválido. Se esperaba yyyy-MM-dd.");
+        }
     }
-
-    try {
-        this.proximaDosis = LocalDate.parse(proximaDosis);
-    } catch (DateTimeParseException e) {
-        throw new IllegalArgumentException("Formato de fecha inválido. Se esperaba yyyy-MM-dd.");
-    }
-}
 
 
 

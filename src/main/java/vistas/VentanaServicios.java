@@ -1,5 +1,6 @@
 
 package vistas;
+import controladores.ControladorConsultaBase;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -10,10 +11,14 @@ public class VentanaServicios extends javax.swing.JFrame {
     private MascotaControlador controladorMascota ;
     private VentanaMedicina ventanaMedicina;
     private VentanaPrincipal ventanaPrincipal;
-  public VentanaServicios(VentanaPrincipal ventanaPrincipal, MascotaControlador controladorMascota ) {
+    private VentanaVacuna ventanaVacuna;
+    private ControladorConsultaBase controladorConsultaBase;
+  public VentanaServicios(VentanaPrincipal ventanaPrincipal, MascotaControlador controladorMascota, ControladorConsultaBase controladorConsultaBase ) {
       this.ventanaMedicina = ventanaMedicina;
         this.ventanaPrincipal = ventanaPrincipal;
         this.controladorMascota = controladorMascota ;
+        this.ventanaVacuna = ventanaVacuna;
+         this.controladorConsultaBase = new ControladorConsultaBase();
         initComponents();
         setTitle("Servicios");
         setSize(700, 500);
@@ -131,12 +136,17 @@ public class VentanaServicios extends javax.swing.JFrame {
                 switch (opcion) {
                     case "Medicina General":
                         if(ventanaMedicina == null){
-                        ventanaMedicina = new VentanaMedicina(this, controladorMascota);
+                        ventanaMedicina = new VentanaMedicina(this, controladorMascota,controladorConsultaBase);
                         }
                         this.setVisible(false);
                         ventanaMedicina.setVisible(true);
                         break;
-                    case "Vacuna":
+                    case "Vacuna": 
+                        if(ventanaVacuna == null){
+                            ventanaVacuna = new VentanaVacuna(this, controladorMascota,controladorConsultaBase);
+                        }
+                        this.setVisible(false);
+                        ventanaVacuna.setVisible(true);
                         break;
                     case "Salir":
                         int confirmar = JOptionPane.showConfirmDialog(null, "¿Deseas salir?", "Confirmación", JOptionPane.YES_NO_OPTION);
