@@ -34,6 +34,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
         this.controladorMascota = controladorMascota;
         this.controladorConsultaBase = new ControladorConsultaBase();
         initComponents();
+        listarConsultas();
         setTitle("Gestion de Consultas");
         setLocationRelativeTo(this);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -67,7 +68,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
     }*/
     public void listarConsultas() {
     String[] columnas = {
-        "Fecha", "Codigo", "Nombre Mascota", "Documento propietario"
+        "Fecha", "Codigo", "Nombre Mascota", "Id Mascota" , "Documento propietario"
         , "Nombre Veterinario","Especialidad Veterinario", "Diagnostico","Tratamiento"
     };
 
@@ -84,6 +85,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
                 consulta.getFecha(),
                 consulta.getCodigo(),
                 consulta.getNombreMasCons(),
+                consulta.getIdMas(),
                 consulta.getDocumentoPropCons(),
                 consulta.getVeterinario().getNombre(),
                 consulta.getVeterinario().getEspecialidad(),
@@ -129,7 +131,8 @@ public class VentanaMedicina extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaConsulta = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         btnVolverVentanPrincipal = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
@@ -196,12 +199,11 @@ public class VentanaMedicina extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addGap(73, 73, 73)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMedicinaIdMas)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMedicinaCodigo)
                             .addComponent(txtMedicinaTartamiento)
-                            .addComponent(txtMedicinaDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtMedicinaIdMas)
+                            .addComponent(txtMedicinaDiagnostico)))
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,10 +255,17 @@ public class VentanaMedicina extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaConsulta);
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -268,8 +277,10 @@ public class VentanaMedicina extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(285, 285, 285)
-                .addComponent(jButton2)
+                .addGap(96, 96, 96)
+                .addComponent(btnActualizar)
+                .addGap(32, 32, 32)
+                .addComponent(btnEliminar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -277,9 +288,11 @@ public class VentanaMedicina extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(31, 31, 31))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizar)
+                    .addComponent(btnEliminar))
+                .addGap(47, 47, 47))
         );
 
         jTabbedPane1.addTab("Gestion de Consultas", jPanel4);
@@ -406,10 +419,40 @@ public class VentanaMedicina extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnVolverVentanPrincipalActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
     listarConsultas();
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+    int fila = tablaConsulta.getSelectedRow();
+
+if (fila == -1) {
+    JOptionPane.showMessageDialog(this, "Por favor selecciona una consulta para eliminar.");
+    return;
+}
+
+String codigo = tablaConsulta.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
+int idMas = Integer.parseInt(tablaConsulta.getValueAt(fila, 3).toString());
+
+DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(idMas);
+
+if (confirmar != null) {
+    boolean eliminado = controladorConsultaBase.eliminarPorIdentificacion(codigo);
+
+    if (eliminado) {
+        listarConsultas(); // refrescar tabla
+        JOptionPane.showMessageDialog(this, "La consulta se eliminó correctamente.");
+    } else {
+        JOptionPane.showMessageDialog(this, "No se encontró una consulta con ese código.");
+    }
+} else {
+    JOptionPane.showMessageDialog(this, "No se encontró la consulta seleccionada.");
+}
+
+
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,10 +480,11 @@ public class VentanaMedicina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnMedicinaGurdar;
     private javax.swing.JButton btnVolverVentanPrincipal;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

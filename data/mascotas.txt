@@ -1,2 +1,3 @@
 kevin,Perro,8,123,123456
 fghjk,Perro,5,1234,123456
+cghjk,Gato,5,12345,123456

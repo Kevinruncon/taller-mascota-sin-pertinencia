@@ -35,6 +35,7 @@ vistas\VentanaPrincipal$2.class
 controladores\ControladorConsultaBase.class
 dto\DtoVacuna.class
 vistas\VentanaVacuna.class
+vistas\VentanaMedicina$5.class
 vistas\VentanaRegistro$14.class
 vistas\VentanaRegistro$10.class
 dto\DtoPropietario.class

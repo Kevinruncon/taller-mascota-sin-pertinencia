@@ -34,9 +34,14 @@ public class ControladorConsultaBase {
     public DtoConsultaBase buscarConsulta(int id){
        return dao.buscarConsulta(id);
     }
+    
+//    public DtoConsultaBase buscarPorCodigo(String codigo){
+//       return dao.buscarPorCodigo(codigo);
+//    }
 
-    public void eliminarPorIdentificacion( String codigo) {
+
+    public boolean eliminarPorIdentificacion( String codigo) {
         ListaconsultasBase.removeIf(p -> p.getCodigo().equals(codigo));
-        dao.guardarConsulta(ListaconsultasBase);
+       return dao.guardarConsulta(ListaconsultasBase);
     } 
 }

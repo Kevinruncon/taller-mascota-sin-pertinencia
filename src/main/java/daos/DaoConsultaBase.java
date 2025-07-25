@@ -46,6 +46,19 @@ public class DaoConsultaBase {
         return null;
                                                                                 
     }
+//    
+//      public DtoConsultaBase buscarPorCodigo(String codigo){
+//        ArrayList<DtoConsultaBase> ConsultasBase = cargarConsultas();
+//        for(    DtoConsultaBase c : ConsultasBase){
+//            if(c.getCodigo().equals(codigo)){
+//                return c;
+//            }
+//            
+//        }
+//        return null;
+//                                                                                
+//    }
+
 
        public ArrayList<DtoConsultaBase> cargarConsultas() {
         ArrayList<DtoConsultaBase> ConsultasBase = new ArrayList<>();
