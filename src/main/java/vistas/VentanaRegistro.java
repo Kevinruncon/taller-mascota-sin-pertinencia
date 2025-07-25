@@ -798,6 +798,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         }
         DtoMascota nuevaMascota = new DtoMascota(nombre, especie, edad,id,documento);
         boolean confirmacion = controladorMascota.guardarMascota(nuevaMascota);
+        
 
         if (confirmacion) {
             JOptionPane.showMessageDialog(this, "La mascota fue guardada correctamente", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);

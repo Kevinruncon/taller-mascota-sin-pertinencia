@@ -118,6 +118,14 @@ public class DtoMascota {
         return nombre + "," + especie + "," + edad + "," + Id + "," + documentoPropietario;
     }
 
+    public Historial getHistorial() {
+        return historial;
+    }
+
+    public void setHistorial(Historial historial) {
+        this.historial = historial;
+    }
+
     public static DtoMascota desdeLineaArchivo(String linea) {
         String[] partes = linea.split(",");
         if (partes.length != 5) return null;

@@ -1,12 +1,17 @@
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\com\mycompany\registromascotas\RegistroMascotas.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\ConsultaControlador.java
+C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\ControladorConsultaBase.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\MascotaControlador.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\PropietarioControlador.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\VacunaControlador.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoConsulta.java
+C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoConsultaBase.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoMascotas.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoPropietario.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoVacuna.java
+C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\dto\DtoConsulta.java
+C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\dto\DtoConsultaBase.java
+C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\dto\DtoHistorial.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\dto\DtoMascota.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\dto\DtoPersona.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\dto\DtoPropietario.java

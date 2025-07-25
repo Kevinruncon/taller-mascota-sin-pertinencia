@@ -14,7 +14,7 @@ import modelo.Mascotas;
 public class DtoPropietario extends DtoPersona {
     private String documento;
     private String telefono;
-    private ArrayList<Mascotas> mascotas; // Relación 1 a muchos
+    private ArrayList<DtoMascota> mascotas; // Relación 1 a muchos
 
     public DtoPropietario (String nombre, String documento, String telefono) {
         /*this.nombre = nombre;
@@ -27,7 +27,7 @@ public class DtoPropietario extends DtoPersona {
         this.mascotas = new ArrayList<>();
     }
 
-    public void agregarMascota(Mascotas mascota) {
+    public void agregarMascota(DtoMascota mascota) {
         mascotas.add(mascota);
     }
 
@@ -80,7 +80,7 @@ public class DtoPropietario extends DtoPersona {
         this.telefono = telefono;
     }
 
-    public ArrayList<Mascotas> getMascotas() {
+    public ArrayList<DtoMascota> getMascotas() {
         return new ArrayList<>(mascotas);
     }
  /*

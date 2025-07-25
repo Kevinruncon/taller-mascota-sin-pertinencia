@@ -4,7 +4,7 @@
  */
 package modelo;
 import java.util.ArrayList;
-public class Mascotas {
+public class Mascotas  {
     private int Id;
     private String nombre;
     private String especie;

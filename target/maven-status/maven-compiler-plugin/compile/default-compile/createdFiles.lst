@@ -1,5 +1,6 @@
 modelo\Propietario.class
 modelo\Historial.class
+dto\DtoConsultaBase.class
 vistas\VentanaServicios$3.class
 vistas\VentanaRegistro$5.class
 vistas\VentanaMedicina$3.class
@@ -13,10 +14,12 @@ modelo\Vacuna.class
 vistas\VentanaPrincipal$3.class
 controladores\VacunaControlador.class
 vistas\VentanaRegistro$12.class
+dto\DtoConsulta.class
 daos\DaoPropietario.class
 vistas\VentanaRegistro$4.class
 persistencia\ArchivoManager.class
 vistas\VentanaRegistro$18.class
+dto\DtoHistorial.class
 dto\DtoPersona.class
 vistas\VentanaServicios$2.class
 daos\DaoMascotas.class
@@ -29,6 +32,7 @@ controladores\ConsultaControlador.class
 vistas\VentanaPrincipal.class
 vistas\VentanaRegistro$7.class
 vistas\VentanaPrincipal$2.class
+controladores\ControladorConsultaBase.class
 dto\DtoVacuna.class
 vistas\VentanaVacuna.class
 vistas\VentanaRegistro$14.class
@@ -41,6 +45,7 @@ modelo\Mascotas.class
 dto\DtoMascota.class
 vistas\VentanaRegistro$13.class
 vistas\VentanaRegistro.class
+daos\DaoConsultaBase.class
 modelo\Consulta.class
 persistencia\ArchivoUtil.class
 vistas\VentanaRegistro$9.class
@@ -52,4 +57,5 @@ vistas\VentanaServicios.class
 vistas\VentanaRegistro$2.class
 daos\DaoConsulta.class
 modelo\Persona.class
+vistas\VentanaMedicina$4.class
 vistas\VentanaServicios$1.class

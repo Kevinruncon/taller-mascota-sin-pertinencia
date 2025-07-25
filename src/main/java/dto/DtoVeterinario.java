@@ -4,11 +4,14 @@
  */
 package dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Kevin
  */
-public class DtoVeterinario extends DtoPersona {
+public class DtoVeterinario extends DtoPersona implements Serializable{
+    private static final long serialVersionUID = 1L;
      private String especialidad;
 
     public DtoVeterinario (String nombre, String especialidad) {

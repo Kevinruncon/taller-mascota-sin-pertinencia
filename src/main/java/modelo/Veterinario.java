@@ -4,12 +4,18 @@
  */
 package modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Kevin
  */
-public class Veterinario extends Persona {
+public class Veterinario extends Persona implements Serializable{
+    private static final long serialVersionUID = 1L;
+    
     private String especialidad;
+
+    
 
     public Veterinario(String nombre, String especialidad) {
         /*this.nombre = nombre;

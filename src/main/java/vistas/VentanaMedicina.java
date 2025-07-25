@@ -14,6 +14,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import modelo.Consulta;
 import modelo.Mascotas;
+import dto.DtoConsultaBase;
+import controladores.ControladorConsultaBase;
+import dto.DtoConsulta;
 
 /**
  *
@@ -22,14 +25,14 @@ import modelo.Mascotas;
 public class VentanaMedicina extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaMedicina.class.getName());
-    private ConsultaControlador controladorConsulta ;
+    private  ControladorConsultaBase controladorConsultaBase ;
     private VentanaServicios ventanaServicios;
     private MascotaControlador controladorMascota;
     
     public VentanaMedicina(VentanaServicios ventanaServicios,MascotaControlador controladorMascota) {
         this.ventanaServicios = ventanaServicios;
         this.controladorMascota = controladorMascota;
-        this.controladorConsulta = new ConsultaControlador();
+        this.controladorConsultaBase = new ControladorConsultaBase();
         initComponents();
         setTitle("Gestion de Consultas");
         setLocationRelativeTo(this);
@@ -47,7 +50,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
         tablaConsulta.setModel(modeloCons);
     }
     
-    public void ListarConsulta(){
+   /* public void ListarConsulta(){
             String[] columnas = {"Fecha", "Codigo", "Nombre Mascota", "Documento propietario"
         , "Nombre Veterinario","Especialidad Veterinario", "Diagnostico","Tratamiento"};
           DefaultTableModel modeloCons = new DefaultTableModel(columnas, 0);
@@ -61,7 +64,40 @@ public class VentanaMedicina extends javax.swing.JFrame {
           modeloCons.addRow(fila);
           }
          tablaConsulta.setModel(modeloCons);
+    }*/
+    public void listarConsultas() {
+    String[] columnas = {
+        "Fecha", "Codigo", "Nombre Mascota", "Documento propietario"
+        , "Nombre Veterinario","Especialidad Veterinario", "Diagnostico","Tratamiento"
+    };
+
+    DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+    // Usar el controlador en lugar del DAO directamente
+    ArrayList<DtoConsultaBase> historial = controladorConsultaBase.listar();
+
+    for (DtoConsultaBase registro : historial) {
+        if (registro instanceof DtoConsulta) {
+            DtoConsulta consulta = (DtoConsulta) registro;
+
+            Object[] fila = {
+                consulta.getFecha(),
+                consulta.getCodigo(),
+                consulta.getNombreMasCons(),
+                consulta.getDocumentoPropCons(),
+                consulta.getVeterinario().getNombre(),
+                consulta.getVeterinario().getEspecialidad(),
+                consulta.getDiagnostico(),
+                consulta.getTratamiento()
+            };
+
+            modelo.addRow(fila);
+        }
     }
+
+    tablaConsulta.setModel(modelo);
+}
+
 
             
      /**
@@ -73,6 +109,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -92,7 +129,10 @@ public class VentanaMedicina extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaConsulta = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         btnVolverVentanPrincipal = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(202, 210, 197));
@@ -213,21 +253,33 @@ public class VentanaMedicina extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaConsulta);
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(330, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(285, 285, 285)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(31, 31, 31))
         );
 
         jTabbedPane1.addTab("Gestion de Consultas", jPanel4);
@@ -290,36 +342,47 @@ public class VentanaMedicina extends javax.swing.JFrame {
     String tratamiento = txtMedicinaTartamiento.getText();
     String diagnostico = txtMedicinaDiagnostico.getText();
     int fila = tablaMedicina.getSelectedRow();
-    
-    if( idMas <= 0  || codigo == null || codigo.isBlank()||tratamiento == null
-    ||tratamiento.isBlank() || diagnostico == null || diagnostico.isBlank()){
-      JOptionPane.showMessageDialog(this, " Porfavor completar todos los campos de manera correcta.", "Error", JOptionPane.ERROR_MESSAGE);
-      return;
+
+    if (idMas <= 0 || codigo.isBlank() || tratamiento.isBlank() || diagnostico.isBlank()) {
+        JOptionPane.showMessageDialog(this, "Por favor completa todos los campos correctamente.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
-    
-    if(fila == -1){
-        JOptionPane.showMessageDialog(this, "Porfavor selecciona un veterinario para continuar con el registro");
+
+    if (fila == -1) {
+        JOptionPane.showMessageDialog(this, "Por favor selecciona un veterinario para continuar con el registro.");
         return;
-}  
+    }
+
     DtoMascota m = controladorMascota.buscarMascota(idMas);
-    if(m == null){
-        JOptionPane.showMessageDialog(this, "No existe la mascota con el id:" + idMas);
+    if (m == null) {
+        JOptionPane.showMessageDialog(this, "No existe la mascota con el ID: " + idMas);
         return;
-    }    
-    
-      String nombre = tablaMedicina.getValueAt(fila, 0).toString();
-      String especialidad = tablaMedicina.getValueAt(fila, 1).toString();
-      Veterinario vetFin = new Veterinario(nombre, especialidad);
+    }
 
-      Consulta confirmar = controladorConsulta.buscarConsulta(codigo);
-      if(confirmar == null){
-         controladorConsulta.registrarConsulta(codigo, LocalDate.now().toString(), vetFin, m.getDocumentoPropietario(), m.getNombre(), diagnostico, tratamiento);
-          ListarConsulta();
-         JOptionPane.showMessageDialog(this, "La consulta se guardo correctamente.");
-}else{
-          JOptionPane.showMessageDialog(this, "La consulta no se pudo registrar, ya existe una con la misma informacion.");
+    String nombre = tablaMedicina.getValueAt(fila, 0).toString();
+    String especialidad = tablaMedicina.getValueAt(fila, 1).toString();
+    Veterinario vetFin = new Veterinario(nombre, especialidad);
 
-              }
+    // Verificar si ya existe una consulta con ese código
+    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(idMas);
+
+    if (confirmar == null) {
+        // Crear la nueva consulta
+        String fechaHoy = LocalDate.now().toString(); // o usa un DatePicker si lo tienes
+        DtoConsulta nueva = new DtoConsulta(codigo, vetFin, m.getDocumentoPropietario(), m.getNombre(), diagnostico, tratamiento, fechaHoy, idMas);
+
+        boolean guardado = controladorConsultaBase.agregar(nueva);
+
+        if (guardado) {
+            listarConsultas(); // Refrescar tabla
+            JOptionPane.showMessageDialog(this, "La consulta se guardó correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Hubo un error al guardar la consulta.");
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Ya existe una consulta con el mismo código.");
+    }
+
 
 
     
@@ -333,16 +396,20 @@ public class VentanaMedicina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMedicinaGurdarActionPerformed
 
     private void txtMedicinaIdMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMedicinaIdMasActionPerformed
-    this.setVisible(false);
-   ventanaServicios.setVisible(true);
+
 
     }//GEN-LAST:event_txtMedicinaIdMasActionPerformed
 
     private void btnVolverVentanPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVentanPrincipalActionPerformed
-
-
+    this.setVisible(false);
+   ventanaServicios.setVisible(true);
 
     }//GEN-LAST:event_btnVolverVentanPrincipalActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    listarConsultas();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,6 +439,8 @@ public class VentanaMedicina extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMedicinaGurdar;
     private javax.swing.JButton btnVolverVentanPrincipal;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

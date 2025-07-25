@@ -130,10 +130,11 @@ public class VentanaServicios extends javax.swing.JFrame {
  
                 switch (opcion) {
                     case "Medicina General":
+                        if(ventanaMedicina == null){
                         ventanaMedicina = new VentanaMedicina(this, controladorMascota);
+                        }
                         this.setVisible(false);
                         ventanaMedicina.setVisible(true);
-                        
                         break;
                     case "Vacuna":
                         break;

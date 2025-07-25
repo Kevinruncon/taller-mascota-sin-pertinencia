@@ -13,48 +13,48 @@ import modelo.Consulta;
  */
 public class DaoConsulta {
     
-    private ArrayList<Consulta> listaConsulta = new ArrayList<>();
-
-    public DaoConsulta() {
-    }
-    
-    public boolean guardarConsulta (Consulta consulta){
-        for (Consulta c : listaConsulta){
-            if(c.getCodigo().equals(consulta.getCodigo())){
-                return false;
-            }
-        }
-        return listaConsulta.add(consulta);
-    } 
-    public boolean editarConsulta(Consulta consulta){
-    for (Consulta c : listaConsulta){
-        if (c.getCodigo().equals(consulta.getCodigo())){
-            c.setFecha(consulta.getFecha().toString()); 
-            c.setVeterinario(consulta.getVeterinario());
-            return true; 
-        }
-    }
-    return false;
-}
-
-    
-    public boolean eliminarConsulta (Consulta consulta){
-        for ( Consulta c: listaConsulta){
-            if(c.getCodigo().equals(consulta.getCodigo())){
-               return listaConsulta.remove(c);   
-            }
-        }
-        return false;
-    }
-    public Consulta buscarConsulta(String codigo){
-        for(Consulta c : listaConsulta){
-            if(c.getCodigo().equals(codigo)){
-            return c;
-            }
-        }
-        return null;
-    }
-    public ArrayList<Consulta> obtenerTodas() {
-        return new ArrayList<>(listaConsulta);
-}
+//    private ArrayList<Consulta> listaConsulta = new ArrayList<>();
+//
+//    public DaoConsulta() {
+//    }
+//    
+//    public boolean guardarConsulta (Consulta consulta){
+//        for (Consulta c : listaConsulta){
+//            if(c.getCodigo().equals(consulta.getCodigo())){
+//                return false;
+//            }
+//        }
+//        return listaConsulta.add(consulta);
+//    } 
+//    public boolean editarConsulta(Consulta consulta){
+//    for (Consulta c : listaConsulta){
+//        if (c.getCodigo().equals(consulta.getCodigo())){
+//            c.setFecha(consulta.getFecha().toString()); 
+//            c.setVeterinario(consulta.getVeterinario());
+//            return true; 
+//        }
+//    }
+//    return false;
+//}
+//
+//    
+//    public boolean eliminarConsulta (Consulta consulta){
+//        for ( Consulta c: listaConsulta){
+//            if(c.getCodigo().equals(consulta.getCodigo())){
+//               return listaConsulta.remove(c);   
+//            }
+//        }
+//        return false;
+//    }
+//    public Consulta buscarConsulta(String codigo){
+//        for(Consulta c : listaConsulta){
+//            if(c.getCodigo().equals(codigo)){
+//            return c;
+//            }
+//        }
+//        return null;
+//    }
+//    public ArrayList<Consulta> obtenerTodas() {
+//        return new ArrayList<>(listaConsulta);
+//}
 }
