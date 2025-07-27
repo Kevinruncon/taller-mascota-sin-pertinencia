@@ -3,44 +3,50 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controladores;
+
+import daos.DaoMascotas;
 import dto.DtoPropietario;
 import daos.DaoPropietario;
+import dto.DtoMascota;
 import java.util.ArrayList;
+
 /**
  *
- * @author Kevin 
+ * @author Kevin
  */
-
-
-
 
 public class PropietarioControlador {
 
-    private final  DaoPropietario dao ;
-    
-    private ArrayList<DtoPropietario> ListaPropietario;
-    
+    private final DaoPropietario dao;
+    private ArrayList<DtoPropietario> listaPropietario;
+
     public PropietarioControlador() {
-        this.dao = new DaoPropietario();
-        
+        this.dao = DaoPropietario.getInstancia();
+        this.listaPropietario = dao.listar(); // Cargar la lista inicial desde archivo
+    }
+
+    public ArrayList<DtoPropietario> listar() {
+        // Siempre se actualiza la lista más reciente
+        listaPropietario = dao.listar();
+        return listaPropietario;
     }
 
     public boolean guardarPropietario(DtoPropietario propietario) {
-        if ((propietario.getNombre() == null || propietario.getNombre().isBlank()) ||
-            (propietario.getDocumento() == null || propietario.getDocumento().length() < 5) ||
-            (propietario.getTelefono() == null || propietario.getTelefono().length() < 5)) {
+        if ((propietario.getNombre() == null || propietario.getNombre().isBlank())
+                || (propietario.getDocumento() == null || propietario.getDocumento().length() < 5)
+                || (propietario.getTelefono() == null || propietario.getTelefono().length() < 5)) {
             return false;
         }
-        ArrayList<DtoPropietario> ListaPropietario = dao.cargarPropietario();
-        
-        for(DtoPropietario p : ListaPropietario){
-            if(p.getDocumento().equals(propietario.getDocumento())){
-                return false;
-        }
-  }
-        ListaPropietario.add(propietario);
-        return dao.guardarPropietario(ListaPropietario);
 
+        for (DtoPropietario p : listaPropietario) {
+            if (p.getDocumento().equals(propietario.getDocumento())) {
+                return false; // Ya existe
+            }
+        }
+
+        dao.guardarPropietario(propietario);
+        listaPropietario = listar();
+        return true;
     }
 
     public DtoPropietario buscarPropietario(String documento) {
@@ -53,14 +59,19 @@ public class PropietarioControlador {
 
     public boolean editarPropietario(String documentoActual, String nuevoNombre, String nuevoTelefono) {
         // Validar datos nuevos y actuales
-        if ((documentoActual == null || documentoActual.isBlank()) ||
-            (nuevoNombre == null || nuevoNombre.isBlank()) ||
-            (nuevoTelefono == null || nuevoTelefono.length() < 5)) {
+        if ((documentoActual == null || documentoActual.isBlank())
+                || (nuevoNombre == null || nuevoNombre.isBlank())
+                || (nuevoTelefono == null || nuevoTelefono.length() < 5)) {
             return false;
         }
-
+        DtoPropietario existe = dao.buscarPropietario(documentoActual);
+        if (existe == null) {
+            return false;
+        }
         DtoPropietario actualizado = new DtoPropietario(nuevoNombre, documentoActual, nuevoTelefono);
-        return dao.editarPropietario(documentoActual, actualizado);
+        dao.actualizarPropietario(documentoActual, actualizado);
+        listaPropietario = listar();
+        return true;
     }
 
     public boolean eliminarPropietario(String documento) {
@@ -68,11 +79,17 @@ public class PropietarioControlador {
         if (documento == null || documento.isBlank()) {
             return false;
         }
-        return dao.eliminarPropietario(documento);
-    }
-    
-    public ArrayList<DtoPropietario> obtenerPropietarios(){
-        return dao.obtenerTodos();
+        DtoPropietario existe = dao.buscarPropietario(documento);
+        if (existe == null) {
+            return false;
+        }
+        dao.eliminarPropietario(documento);
+        listaPropietario = listar();
+        return true;
     }
 }
 
+/*  public ArrayList<DtoPropietario> obtenerPropietarios(){
+        return dao.obtenerTodos();
+    }
+}*/

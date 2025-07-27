@@ -395,7 +395,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
         String fechaHoy = LocalDate.now().toString(); // o usa un DatePicker si lo tienes
         DtoConsulta nueva = new DtoConsulta(codigo, vetFin, m.getDocumentoPropietario(), m.getNombre(), diagnostico, tratamiento, fechaHoy, idMas);
 
-        boolean guardado = controladorConsultaBase.agregar(nueva);
+        boolean guardado = controladorConsultaBase.agregar(nueva,DtoConsulta.class);
 
         if (guardado) {
             listarConsultas(); // Refrescar tabla
@@ -468,44 +468,41 @@ if (confirmar != null) {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     
 
-//    int fila = tablaMedicina.getSelectedRow();
-//
-//    if (fila == -1) {
-//        JOptionPane.showMessageDialog(this, "Por favor selecciona un veterinario para continuar con el registro.");
-//        return;
-//    }
-//
-//       
-//    if (m == null) {
-//        JOptionPane.showMessageDialog(this, "No existe la mascota con el ID: " + idMas);
-//        return;
-//    }
-//
-//    String nombre = tablaMedicina.getValueAt(fila, 0).toString();
-//    String especialidad = tablaMedicina.getValueAt(fila, 1).toString();
-//    Veterinario vetFin = new Veterinario(nombre, especialidad);
-//
-//     Verificar si ya existe una consulta con ese código
-//    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo);
-//
-//    if (confirmar == null) {
-//         Crear la nueva consulta
-//        String fechaHoy = LocalDate.now().toString(); // o usa un DatePicker si lo tienes
-//        DtoConsulta nueva = new DtoConsulta(codigo, vetFin, m.getDocumentoPropietario(), m.getNombre(), diagnostico, tratamiento, fechaHoy, idMas);
-//
-//        boolean guardado = controladorConsultaBase.agregar(nueva);
-//
-//        if (guardado) {
-//            listarConsultas(); // Refrescar tabla
-//            JOptionPane.showMessageDialog(this, "La consulta se guardó correctamente.");
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Hubo un error al guardar la consulta.");
-//        }
-//    } else {
-//        JOptionPane.showMessageDialog(this, "Ya existe una consulta con el mismo código.");
-//    }
-//
-//
+    int fila = tablaMedicina.getSelectedRow();
+
+    if (fila == -1) {
+        JOptionPane.showMessageDialog(this, "Por favor selecciona una Consulta para continuar.");
+        return;
+    }
+    String codigo = tablaConsulta.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
+
+    
+
+    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
+
+    if (confirmar != null) {
+        DtoConsulta  nueva = (DtoConsulta) confirmar;
+        String diagnostico = JOptionPane.showInputDialog(this,"Ingrese el nuevo diagnostico: ");
+        String tratamiento = JOptionPane.showInputDialog(this,"Ingrese el nuevo tratamiento: ");
+    
+        if (diagnostico != null && !diagnostico.isBlank() && tratamiento != null && !tratamiento.isBlank()) {
+          nueva.setDiagnostico(diagnostico);
+          nueva.setTratamiento(tratamiento);
+
+        boolean guardado = controladorConsultaBase.actualizarConsulta(nueva,DtoConsulta.class);
+
+        if (guardado) {
+            listarConsultas(); // Refrescar tabla
+            JOptionPane.showMessageDialog(this, "La consulta se edito correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Hubo un error al editar la consulta.");
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.");
+    }
+    }
+
+
 //    
 
 

@@ -327,7 +327,7 @@ public void listarVacunas() {
         DtoVacuna nueva = new DtoVacuna(tipo,lote, proximaDosis1.toString(), fechaHoy, idMas, codigo);
         
 
-        boolean guardado = controladorConsultaBase.agregar(nueva ); 
+        boolean guardado = controladorConsultaBase.agregar(nueva,DtoVacuna.class ); 
 
         if (guardado ) {
             listarVacunas(); // Refrescar tabla

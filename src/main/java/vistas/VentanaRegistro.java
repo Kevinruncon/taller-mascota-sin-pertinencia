@@ -81,10 +81,10 @@ public class VentanaRegistro extends javax.swing.JFrame {
         String[] columnas = {"Nombre", "Documento", "Teléfono"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-        ArrayList<DtoPropietario> lista = controladorPropietario.obtenerPropietarios();
+        ArrayList<DtoPropietario> listar = controladorPropietario.listar();
 
-        if (lista != null && !lista.isEmpty()) {
-            for (DtoPropietario p : lista) {
+        if (listar != null && !listar.isEmpty()) {
+            for (DtoPropietario p : listar) {
                 Object[] fila = {p.getNombre(), p.getDocumento(), p.getTelefono()};
                 modelo.addRow(fila);
             }

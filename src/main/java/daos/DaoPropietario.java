@@ -13,14 +13,87 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import daos.DaoConsultaBase;
+import dto.DtoMascota;
+import persistencia.GestorPersistencia;
 
 /**
  *
  * @author Kevin
  */
 public class DaoPropietario {
+      private final String ruta = "data/propietario.dat";
+    private final GestorPersistencia gestor = GestorPersistencia.getInstance();
+
+    public DaoPropietario() {
+    }
+
+    private static DaoPropietario instancia;
+
+    public static DaoPropietario getInstancia() {
+        if (instancia == null) {
+            instancia = new DaoPropietario();
+        }
+        return instancia;
+    }
+
+    public boolean guardarPropietario(DtoPropietario propietario) {
+        ArrayList<DtoPropietario> lista = listar();
+        for (int i = 0; i < lista.size(); i++) {
+            if( lista.get(i).getDocumento().equals(propietario.getDocumento())){
+                return false;
+            }
+        }
+        lista.add(propietario);
+        gestor.guardarLista(ruta, lista);
+        return true;   
+    }
+
+    public ArrayList<DtoPropietario> listar() {
+        ArrayList<DtoPropietario> lista = gestor.cargarLista(ruta);
+        return lista != null ? lista : new ArrayList<>();
+    }
+
+    public boolean eliminarPropietario(String documento) {
+        ArrayList<DtoPropietario> lista = listar();
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getDocumento().equals(documento)) {
+                lista.remove(i);
+                gestor.guardarLista(ruta, lista);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean actualizarPropietario( String documento, DtoPropietario propietario) {
+        ArrayList<DtoPropietario> lista = listar();
+
+        for (int i = 0; i < lista.size(); i++) {
+            DtoPropietario actual = lista.get(i);
+            if (actual.getDocumento().equals(documento)) {
+                lista.set(i, propietario);
+                gestor.guardarLista(ruta, lista);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public DtoPropietario buscarPropietario(String documento){
+        ArrayList<DtoPropietario> lista = listar();
+       for (int i = 0; i < lista.size(); i++) {
+           if(lista.get(i).getDocumento().equals(documento)){
+               return lista.get(i);  
+           }
+       }
+       return null;
+
+    }
+            
+}
+
     
-    private final String archivo = "data/Propietario.dat";
+   /* private final String archivo = "data/Propietario.dat";
     private DaoConsultaBase dao;
 
     public DaoPropietario() {
@@ -66,7 +139,7 @@ public class DaoPropietario {
            return ListaPropietario; 
        }
 
-  /*  public boolean eliminarPropietario(String documento) {
+    public boolean eliminarPropietario(String documento) {
         ArrayList<DtoPropietario> ListaPropietario = cargarPropietario();
         DtoPropietario p = buscarPropietario(documento);
         if (p != null) {
@@ -74,7 +147,7 @@ public class DaoPropietario {
             return guardarPropietario(ListaPropietario);
             }
         return false;
-    }*/
+    }
     
     public boolean eliminarPropietario(String documento) {
     ArrayList<DtoPropietario> ListaPropietario = cargarPropietario();
@@ -103,4 +176,4 @@ public class DaoPropietario {
       public ArrayList<DtoPropietario> obtenerTodos() {
         return new ArrayList<>(cargarPropietario());
       }
-}
+}*/
