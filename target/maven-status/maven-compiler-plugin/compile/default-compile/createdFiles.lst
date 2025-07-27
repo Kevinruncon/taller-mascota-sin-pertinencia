@@ -27,6 +27,7 @@ dto\DtoHistorial.class
 dto\DtoPersona.class
 vistas\VentanaServicios$2.class
 daos\DaoMascotas.class
+persistencia\GestorPersistencia.class
 com\mycompany\registromascotas\RegistroMascotas.class
 vistas\VentanaMedicina$2.class
 vistas\VentanaRegistro$11.class

@@ -58,7 +58,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         String[] columnas = {"ID", "Nombre", "Especie", "Edad", "Documento Propietario"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-        ArrayList<DtoMascota> lista = controladorMascota.obtenerTodasMascotas();
+        ArrayList<DtoMascota> lista = controladorMascota.listar();
 
         if (lista != null && !lista.isEmpty()) {
             for (DtoMascota m : lista) {

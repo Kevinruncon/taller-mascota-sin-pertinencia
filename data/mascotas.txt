@@ -1,2 +1,0 @@
-sebastian fernando,Gato,8,123,123456
-massss,Perro,5,1234,123456

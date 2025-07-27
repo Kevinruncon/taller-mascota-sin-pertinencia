@@ -4,6 +4,7 @@
  */
 package dto;
 
+import java.io.Serializable;
 import modelo.Consulta;
 import modelo.Historial;
 import modelo.Mascotas;
@@ -12,7 +13,9 @@ import modelo.Mascotas;
  *
  * @author Kevin
  */
-public class DtoMascota {
+public class DtoMascota implements Serializable{
+   private static final long serialVersionUID = 1L;
+
     private int Id;
     private String nombre;
     private String especie;
@@ -21,6 +24,9 @@ public class DtoMascota {
     // ✅ Refactor: delegar a clase Historial
     private Historial historial;
     private String documentoPropietario;
+
+    public DtoMascota() {
+    }
 
     public DtoMascota(String nombre, String especie,int edad, int id, String documentoPropietario) {
         /*this.nombre = nombre;

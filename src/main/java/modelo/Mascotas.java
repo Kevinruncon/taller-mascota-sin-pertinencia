@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Mascotas  {
+public class Mascotas implements Serializable{
     private int Id;
     private String nombre;
     private String especie;

@@ -4,6 +4,7 @@
  */
 package dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import modelo.Consulta;
 
@@ -11,7 +12,7 @@ import modelo.Consulta;
  *
  * @author Kevin
  */
-public class DtoHistorial {
+public class DtoHistorial implements Serializable {
     private ArrayList<Consulta> consultas;
 
     public DtoHistorial() {

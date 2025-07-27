@@ -7,6 +7,7 @@ import modelo.Mascotas;
 import daos.DaoMascotas;
 import dto.DtoMascota;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,17 +16,25 @@ import java.util.ArrayList;
 
 public class MascotaControlador {
 
-    private DaoMascotas dao;
+    private final DaoMascotas dao;
+    private ArrayList<DtoMascota> listaMascotas;
 
     public MascotaControlador() {
-        this.dao = new DaoMascotas();
+        this.dao = DaoMascotas.getInstancia();
+        this.listaMascotas = dao.listar(); // Cargar la lista inicial desde archivo
     }
 
+    public ArrayList<DtoMascota> listar() {
+        // Siempre se actualiza la lista más reciente
+        listaMascotas = dao.listar();
+        return listaMascotas;
+    }
     public boolean guardarMascota(DtoMascota mascota) {
     if (mascota == null || mascota.getNombre() == null || mascota.getEspecie() == null || mascota.getId() < 5 || mascota.getEdad() < 0) {
         return false;
     }      
-          dao.guardarMascota(mascota);
+          dao.guardar(mascota);
+          listaMascotas = listar();
           return true;
 }
 
@@ -46,7 +55,9 @@ public class MascotaControlador {
         }
         
         DtoMascota actualizada = new DtoMascota(nuevoNombre, nuevaEspecie, nuevaEdad,id, documentoProp);
-        return dao.actualizarMascota(actualizada);
+         dao.actualizar(actualizada);
+         listaMascotas = listar();
+         return true;
     }
 
         public boolean eliminarMascota(int id) {
@@ -56,24 +67,21 @@ public class MascotaControlador {
 
         DtoMascota m = dao.buscarMascota(id);
         if (m != null) {
-            return dao.eliminarMascota(id);
+            dao.eliminar(id);
+            listaMascotas = listar();
+            return true;
         }
         return false;
     }
+}
     
-    public ArrayList<DtoMascota> buscarPorDocumentoPropietario(String documento) {
+   /* public ArrayList<DtoMascota> buscarPorDocumentoPropietario(String documento) {
     if (documento != null && !documento.equals("")) {
         return dao.buscarUsandoPropietario(documento);
     }
     return new ArrayList<>();
-}
+}*/
     
-    public ArrayList<DtoMascota> obtenerTodasMascotas() {
-    if (dao == null) {
-        return new ArrayList<>();
-    }
-    return dao.getMascotas();
-}
-}
+
 
 

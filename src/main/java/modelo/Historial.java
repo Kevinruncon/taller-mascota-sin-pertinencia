@@ -4,13 +4,14 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Kevin
  */
-public class Historial {
+public class Historial implements Serializable{
 
     private ArrayList<Consulta> consultas;
 

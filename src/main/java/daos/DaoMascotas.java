@@ -10,13 +10,86 @@ import java.util.List;
 import modelo.Mascotas;
 import persistencia.ArchivoManager;
 import persistencia.ArchivoUtil;
+import persistencia.GestorPersistencia;
 
 /**
  *
  * @author Kevin
  */
 public class DaoMascotas {
-   private final ArchivoManager archivo;
+
+    private final String ruta = "data/mascotas.dat";
+    private final GestorPersistencia gestor = GestorPersistencia.getInstance();
+
+    public DaoMascotas() {
+    }
+
+    private static DaoMascotas instancia;
+
+    public static DaoMascotas getInstancia() {
+        if (instancia == null) {
+            instancia = new DaoMascotas();
+        }
+        return instancia;
+    }
+
+    public boolean guardar(DtoMascota mascota) {
+        ArrayList<DtoMascota> lista = listar();
+        for (int i = 0; i < lista.size(); i++) {
+            if( lista.get(i).getId() == mascota.getId()){
+                return false;
+            }
+        }
+        lista.add(mascota);
+        gestor.guardarLista(ruta, lista);
+        return true;   
+    }
+
+    public ArrayList<DtoMascota> listar() {
+        ArrayList<DtoMascota> lista = gestor.cargarLista(ruta);
+        return lista != null ? lista : new ArrayList<>();
+    }
+
+    public boolean eliminar(int id) {
+        ArrayList<DtoMascota> lista = listar();
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getId() == id) {
+                lista.remove(i);
+                gestor.guardarLista(ruta, lista);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean actualizar(DtoMascota mascotaActualizada) {
+        ArrayList<DtoMascota> lista = listar();
+
+        for (int i = 0; i < lista.size(); i++) {
+            DtoMascota actual = lista.get(i);
+            if (actual.getId() == mascotaActualizada.getId()) {
+                lista.set(i, mascotaActualizada);
+                gestor.guardarLista(ruta, lista);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public DtoMascota buscarMascota(int id){
+        ArrayList<DtoMascota> lista = listar();
+       for (int i = 0; i < lista.size(); i++) {
+           if(lista.get(i).getId() == id){
+               return lista.get(i);  
+           }
+       }
+       return null;
+
+    }
+            
+}
+
+/*  private final ArchivoManager archivo;
 
    private ArrayList<DtoMascota> listaMascotas = new ArrayList<>();
 
@@ -104,7 +177,7 @@ public class DaoMascotas {
         }
         return devolverMas; 
     }
-}
+}*/
     
   
 /*
