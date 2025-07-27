@@ -31,8 +31,8 @@ public class ControladorConsultaBase {
         ListaconsultasBase.add(consultasBase);
        return dao.guardarConsulta(ListaconsultasBase);
     }
-    public DtoConsultaBase buscarConsulta(int id){
-       return dao.buscarConsulta(id);
+    public DtoConsultaBase buscarConsulta(String codigo){
+       return dao.buscarConsulta(codigo);
     }
     
 //    public DtoConsultaBase buscarPorCodigo(String codigo){

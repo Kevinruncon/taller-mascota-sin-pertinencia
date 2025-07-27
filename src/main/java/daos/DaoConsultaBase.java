@@ -35,10 +35,10 @@ public class DaoConsultaBase {
 }
 
     
-    public DtoConsultaBase buscarConsulta(int id){
+    public DtoConsultaBase buscarConsulta(String codigo){
         ArrayList<DtoConsultaBase> ConsultasBase = cargarConsultas();
         for(    DtoConsultaBase c : ConsultasBase){
-            if(c.getIdMas() == id){
+            if(c.getCodigo().equals(codigo)){
                 return c;
             }
             

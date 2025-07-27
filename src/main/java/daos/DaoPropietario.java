@@ -5,7 +5,7 @@
 package daos;
 
 import java.util.ArrayList;
-import modelo.Propietario;
+import dto.DtoPropietario;
 
 /**
  *
@@ -13,13 +13,13 @@ import modelo.Propietario;
  */
 public class DaoPropietario {
     
-    private ArrayList<Propietario> listPropietario = new ArrayList<>();
+    private ArrayList<DtoPropietario> listPropietario = new ArrayList<>();
 
     public DaoPropietario() {
     }
     
-     public boolean guardarPropietario(Propietario propietario) {
-        for (Propietario p : listPropietario) {
+     public boolean guardarPropietario(DtoPropietario propietario) {
+        for (DtoPropietario p : listPropietario) {
             if (p.getDocumento().equals(propietario.getDocumento())) {
                 return false; // Ya existe
             }
@@ -28,8 +28,8 @@ public class DaoPropietario {
         return true;
     }
 
-    public Propietario buscarPropietario(String documento) {
-        for (Propietario p : listPropietario) {
+    public DtoPropietario buscarPropietario(String documento) {
+        for (DtoPropietario p : listPropietario) {
             if (p.getDocumento().equals(documento)) {
                 return p;
             }
@@ -38,7 +38,7 @@ public class DaoPropietario {
     }
 
     public boolean eliminarPropietario(String documento) {
-        Propietario p = buscarPropietario(documento);
+        DtoPropietario p = buscarPropietario(documento);
         if (p != null) {
             listPropietario.remove(p);
             return true;
@@ -46,8 +46,8 @@ public class DaoPropietario {
         return false;
     }
 
-    public boolean editarPropietario(String documento, Propietario Propietario) {
-        for (Propietario p : listPropietario) {
+    public boolean editarPropietario(String documento, DtoPropietario Propietario) {
+        for (DtoPropietario p : listPropietario) {
             if (p.getDocumento().equals(documento)) {
                 p.setNombre(Propietario.getNombre());
                 p.setTelefono(Propietario.getTelefono());
@@ -56,7 +56,7 @@ public class DaoPropietario {
         }
         return false;
     }
-      public ArrayList<Propietario> obtenerTodos() {
+      public ArrayList<DtoPropietario> obtenerTodos() {
         return new ArrayList<>(listPropietario);
       }
 }

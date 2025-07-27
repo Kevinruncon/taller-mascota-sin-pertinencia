@@ -15,6 +15,7 @@ modelo\Vacuna.class
 vistas\VentanaPrincipal$3.class
 controladores\VacunaControlador.class
 vistas\VentanaRegistro$12.class
+vistas\VentanaMedicina$6.class
 dto\DtoConsulta.class
 daos\DaoPropietario.class
 vistas\VentanaRegistro$4.class

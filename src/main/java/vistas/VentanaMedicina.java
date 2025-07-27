@@ -133,6 +133,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
         tablaConsulta = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         btnVolverVentanPrincipal = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
@@ -269,6 +270,13 @@ public class VentanaMedicina extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -281,6 +289,8 @@ public class VentanaMedicina extends javax.swing.JFrame {
                 .addComponent(btnActualizar)
                 .addGap(32, 32, 32)
                 .addComponent(btnEliminar)
+                .addGap(31, 31, 31)
+                .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -291,7 +301,8 @@ public class VentanaMedicina extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(jButton2))
                 .addGap(47, 47, 47))
         );
 
@@ -377,7 +388,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
     Veterinario vetFin = new Veterinario(nombre, especialidad);
 
     // Verificar si ya existe una consulta con ese código
-    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(idMas);
+    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo);
 
     if (confirmar == null) {
         // Crear la nueva consulta
@@ -435,7 +446,7 @@ if (fila == -1) {
 String codigo = tablaConsulta.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
 int idMas = Integer.parseInt(tablaConsulta.getValueAt(fila, 3).toString());
 
-DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(idMas);
+DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo);
 
 if (confirmar != null) {
     boolean eliminado = controladorConsultaBase.eliminarPorIdentificacion(codigo);
@@ -453,6 +464,52 @@ if (confirmar != null) {
 
 
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    
+
+//    int fila = tablaMedicina.getSelectedRow();
+//
+//    if (fila == -1) {
+//        JOptionPane.showMessageDialog(this, "Por favor selecciona un veterinario para continuar con el registro.");
+//        return;
+//    }
+//
+//       
+//    if (m == null) {
+//        JOptionPane.showMessageDialog(this, "No existe la mascota con el ID: " + idMas);
+//        return;
+//    }
+//
+//    String nombre = tablaMedicina.getValueAt(fila, 0).toString();
+//    String especialidad = tablaMedicina.getValueAt(fila, 1).toString();
+//    Veterinario vetFin = new Veterinario(nombre, especialidad);
+//
+//     Verificar si ya existe una consulta con ese código
+//    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo);
+//
+//    if (confirmar == null) {
+//         Crear la nueva consulta
+//        String fechaHoy = LocalDate.now().toString(); // o usa un DatePicker si lo tienes
+//        DtoConsulta nueva = new DtoConsulta(codigo, vetFin, m.getDocumentoPropietario(), m.getNombre(), diagnostico, tratamiento, fechaHoy, idMas);
+//
+//        boolean guardado = controladorConsultaBase.agregar(nueva);
+//
+//        if (guardado) {
+//            listarConsultas(); // Refrescar tabla
+//            JOptionPane.showMessageDialog(this, "La consulta se guardó correctamente.");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Hubo un error al guardar la consulta.");
+//        }
+//    } else {
+//        JOptionPane.showMessageDialog(this, "Ya existe una consulta con el mismo código.");
+//    }
+//
+//
+//    
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,6 +542,7 @@ if (confirmar != null) {
     private javax.swing.JButton btnMedicinaGurdar;
     private javax.swing.JButton btnVolverVentanPrincipal;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

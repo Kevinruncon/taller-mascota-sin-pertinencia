@@ -290,7 +290,7 @@ public void listarVacunas() {
         return;
     }
 
-    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(idMas);
+    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo);
 
     if (confirmar == null) {
         // Crear la nueva consulta

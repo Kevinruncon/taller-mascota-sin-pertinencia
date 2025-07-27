@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Mascotas;
-import modelo.Propietario;
+import dto.DtoPropietario;
 import controladores.PropietarioControlador;
 import dto.DtoMascota;
 import vistas.VentanaPrincipal;
@@ -81,10 +81,10 @@ public class VentanaRegistro extends javax.swing.JFrame {
         String[] columnas = {"Nombre", "Documento", "Teléfono"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-        ArrayList<Propietario> lista = controladorPropietario.obtenerPropietarios();
+        ArrayList<DtoPropietario> lista = controladorPropietario.obtenerPropietarios();
 
         if (lista != null && !lista.isEmpty()) {
-            for (Propietario p : lista) {
+            for (DtoPropietario p : lista) {
                 Object[] fila = {p.getNombre(), p.getDocumento(), p.getTelefono()};
                 modelo.addRow(fila);
             }
@@ -734,7 +734,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
             return;
         }
 
-        Propietario nuevoProp = new Propietario(nombreProp, documento, telefono);
+        DtoPropietario nuevoProp = new DtoPropietario(nombreProp, documento, telefono);
         boolean confirmacion = controladorPropietario.guardarPropietario(nuevoProp);
 
         if (confirmacion) {
@@ -786,7 +786,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
             return;
         }
 
-        Propietario prop = controladorPropietario.buscarPropietario(documento);
+        DtoPropietario prop = controladorPropietario.buscarPropietario(documento);
         DtoMascota confirmacionMas = controladorMascota.buscarMascota(id);
 
         if (prop == null ) {
@@ -826,7 +826,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         if (documento == null || documento.isBlank()) {
             JOptionPane.showMessageDialog(this, " Error, porfavor Ingresar valores validos");
         } else {
-            Propietario prop = controladorPropietario.buscarPropietario(documento);
+            DtoPropietario prop = controladorPropietario.buscarPropietario(documento);
             if (prop != null) {
                 JOptionPane.showMessageDialog(this, "Nombre Propietario: " + prop.getNombre() + "\nDocumento Propietario: " + prop.getDocumento()
                         + "\nTelefono Propietario: " + prop.getTelefono());
@@ -941,7 +941,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         if (fila != -1 && fila >= 0) {
 
             String documento = tablePropietario.getValueAt(fila, 1).toString();
-            Propietario prop = controladorPropietario.buscarPropietario(documento);
+            DtoPropietario prop = controladorPropietario.buscarPropietario(documento);
             if (prop != null) {
                 boolean eliminado = controladorPropietario.eliminarPropietario(documento);
                 if (eliminado) {
@@ -965,7 +965,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         if (fila != -1 && fila >= 0) {
 
             String documento = tablePropietario.getValueAt(fila, 1).toString();
-            Propietario prop = controladorPropietario.buscarPropietario(documento);
+            DtoPropietario prop = controladorPropietario.buscarPropietario(documento);
             if (prop != null) {
         String DocumentoActual = prop.getDocumento();
         String nuevoNombre = JOptionPane.showInputDialog(this, "Nuevo nombre:");

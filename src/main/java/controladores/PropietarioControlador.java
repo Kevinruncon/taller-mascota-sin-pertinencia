@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controladores;
-import modelo.Propietario;
+import dto.DtoPropietario;
 import daos.DaoPropietario;
 import java.util.ArrayList;
 /**
@@ -22,7 +22,7 @@ public class PropietarioControlador {
         this.dao = new DaoPropietario();
     }
 
-    public boolean guardarPropietario(Propietario propietario) {
+    public boolean guardarPropietario(DtoPropietario propietario) {
         // Validar que los campos no estén vacíos y tengan longitud adecuada
         if ((propietario.getNombre() == null || propietario.getNombre().isBlank()) ||
             (propietario.getDocumento() == null || propietario.getDocumento().length() < 5) ||
@@ -32,7 +32,7 @@ public class PropietarioControlador {
         return dao.guardarPropietario(propietario);
     }
 
-    public Propietario buscarPropietario(String documento) {
+    public DtoPropietario buscarPropietario(String documento) {
         // Validar que el documento no esté vacío
         if (documento == null || documento.isBlank()) {
             return null;
@@ -48,7 +48,7 @@ public class PropietarioControlador {
             return false;
         }
 
-        Propietario actualizado = new Propietario(nuevoNombre, documentoActual, nuevoTelefono);
+        DtoPropietario actualizado = new DtoPropietario(nuevoNombre, documentoActual, nuevoTelefono);
         return dao.editarPropietario(documentoActual, actualizado);
     }
 
@@ -60,7 +60,7 @@ public class PropietarioControlador {
         return dao.eliminarPropietario(documento);
     }
     
-    public ArrayList<Propietario> obtenerPropietarios(){
+    public ArrayList<DtoPropietario> obtenerPropietarios(){
         return dao.obtenerTodos();
     }
 }
