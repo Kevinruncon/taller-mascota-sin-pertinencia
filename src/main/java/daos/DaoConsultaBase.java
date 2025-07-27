@@ -38,7 +38,7 @@ public class DaoConsultaBase {
     public DtoConsultaBase buscarConsulta(String codigo, Class<?> tipo){
         ArrayList<DtoConsultaBase> ConsultasBase = cargarConsultas();
         for(    DtoConsultaBase c : ConsultasBase){
-            if(c.getCodigo().equals(codigo) && c.getClass().equals(tipo)){
+            if(c.getCodigo().equals(codigo) && tipo.isInstance(c)){
                 return c;
             }
             

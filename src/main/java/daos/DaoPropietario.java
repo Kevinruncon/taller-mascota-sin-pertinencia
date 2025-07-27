@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import daos.DaoConsultaBase;
 
 /**
  *
@@ -20,6 +21,7 @@ import java.io.ObjectOutputStream;
 public class DaoPropietario {
     
     private final String archivo = "data/Propietario.dat";
+    private DaoConsultaBase dao;
 
     public DaoPropietario() {
     }
