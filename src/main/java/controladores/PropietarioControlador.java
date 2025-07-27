@@ -16,20 +16,31 @@ import java.util.ArrayList;
 
 public class PropietarioControlador {
 
-    private DaoPropietario dao;
-
+    private final  DaoPropietario dao ;
+    
+    private ArrayList<DtoPropietario> ListaPropietario;
+    
     public PropietarioControlador() {
         this.dao = new DaoPropietario();
+        
     }
 
     public boolean guardarPropietario(DtoPropietario propietario) {
-        // Validar que los campos no estén vacíos y tengan longitud adecuada
         if ((propietario.getNombre() == null || propietario.getNombre().isBlank()) ||
             (propietario.getDocumento() == null || propietario.getDocumento().length() < 5) ||
             (propietario.getTelefono() == null || propietario.getTelefono().length() < 5)) {
             return false;
         }
-        return dao.guardarPropietario(propietario);
+        ArrayList<DtoPropietario> ListaPropietario = dao.cargarPropietario();
+        
+        for(DtoPropietario p : ListaPropietario){
+            if(p.getDocumento().equals(propietario.getDocumento())){
+                return false;
+        }
+  }
+        ListaPropietario.add(propietario);
+        return dao.guardarPropietario(ListaPropietario);
+
     }
 
     public DtoPropietario buscarPropietario(String documento) {

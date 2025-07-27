@@ -388,7 +388,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
     Veterinario vetFin = new Veterinario(nombre, especialidad);
 
     // Verificar si ya existe una consulta con ese código
-    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo);
+    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo,DtoConsulta.class);
 
     if (confirmar == null) {
         // Crear la nueva consulta
@@ -446,10 +446,10 @@ if (fila == -1) {
 String codigo = tablaConsulta.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
 int idMas = Integer.parseInt(tablaConsulta.getValueAt(fila, 3).toString());
 
-DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo);
+DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
 
 if (confirmar != null) {
-    boolean eliminado = controladorConsultaBase.eliminarPorIdentificacion(codigo);
+    boolean eliminado = controladorConsultaBase.eliminarPorIdentificacion(codigo, DtoConsulta.class);
 
     if (eliminado) {
         listarConsultas(); // refrescar tabla

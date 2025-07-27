@@ -31,8 +31,9 @@ public class ControladorConsultaBase {
         ListaconsultasBase.add(consultasBase);
        return dao.guardarConsulta(ListaconsultasBase);
     }
-    public DtoConsultaBase buscarConsulta(String codigo){
-       return dao.buscarConsulta(codigo);
+    
+    public DtoConsultaBase buscarConsulta(String codigo, Class<?> tipo){
+       return dao.buscarConsulta(codigo, tipo);
     }
     
 //    public DtoConsultaBase buscarPorCodigo(String codigo){
@@ -40,8 +41,12 @@ public class ControladorConsultaBase {
 //    }
 
 
-    public boolean eliminarPorIdentificacion( String codigo) {
-        ListaconsultasBase.removeIf(p -> p.getCodigo().equals(codigo));
+    public boolean eliminarPorIdentificacion( String codigo, Class<?> tipo) {
+     //  DtoConsultaBase buscar = dao.buscarConsulta(codigo, tipo);
+     //  if(buscar != null){
+        ListaconsultasBase.removeIf(p -> p.getCodigo().equals(codigo) && tipo.isInstance(p));
        return dao.guardarConsulta(ListaconsultasBase);
+       }
     } 
-}
+    
+

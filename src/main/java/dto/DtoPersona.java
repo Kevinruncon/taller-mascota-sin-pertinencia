@@ -4,15 +4,17 @@
  */
 package dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Kevin
  */
 
-public abstract class  DtoPersona {
-    
+public abstract class  DtoPersona implements Serializable{
+     
     String nombre;
-
+    
     public DtoPersona(String nombre) {
         this.nombre = nombre;
     }

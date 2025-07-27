@@ -22,7 +22,7 @@ import persistencia.ArchivoManager;
  */
 public class DaoConsultaBase {
   
-  private final String archivo = "data/personas.dat";
+  private final String archivo = "data/ConsultasyVacunas.dat";
 
     public boolean guardarConsulta(ArrayList<DtoConsultaBase> consultaBase) {
     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo))) {
@@ -35,10 +35,10 @@ public class DaoConsultaBase {
 }
 
     
-    public DtoConsultaBase buscarConsulta(String codigo){
+    public DtoConsultaBase buscarConsulta(String codigo, Class<?> tipo){
         ArrayList<DtoConsultaBase> ConsultasBase = cargarConsultas();
         for(    DtoConsultaBase c : ConsultasBase){
-            if(c.getCodigo().equals(codigo)){
+            if(c.getCodigo().equals(codigo) && c.getClass().equals(tipo)){
                 return c;
             }
             

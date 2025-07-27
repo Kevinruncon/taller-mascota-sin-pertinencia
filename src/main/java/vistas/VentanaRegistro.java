@@ -157,6 +157,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         btnBuscarResgitroProp = new javax.swing.JButton();
         btnEliminarProp = new javax.swing.JButton();
         btnEditarProp = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         lblTittle = new javax.swing.JLabel();
         bttMenu = new javax.swing.JButton();
 
@@ -598,6 +599,13 @@ public class VentanaRegistro extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -621,9 +629,11 @@ public class VentanaRegistro extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnEliminarProp)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEditarProp))
+                        .addComponent(btnEditarProp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -649,7 +659,8 @@ public class VentanaRegistro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscarResgitroProp)
                     .addComponent(btnEliminarProp)
-                    .addComponent(btnEditarProp))
+                    .addComponent(btnEditarProp)
+                    .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1000,6 +1011,10 @@ public class VentanaRegistro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ActualizarActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+ListarPropietario();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void limpiarCampos() {
         txtDoc.setText(null);
         txtNomProp.setText(null);
@@ -1055,6 +1070,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
     private javax.swing.JButton bttMenu;
     private javax.swing.JComboBox<String> comboEspecie;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

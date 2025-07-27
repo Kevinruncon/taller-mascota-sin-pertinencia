@@ -4,6 +4,7 @@
  */
 package dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import modelo.Mascotas;
 
@@ -11,10 +12,11 @@ import modelo.Mascotas;
  *
  * @author Kevin
  */
-public class DtoPropietario extends DtoPersona {
+public class DtoPropietario extends DtoPersona implements Serializable{        
     private String documento;
     private String telefono;
     private ArrayList<DtoMascota> mascotas; // Relación 1 a muchos
+
 
     public DtoPropietario (String nombre, String documento, String telefono) {
         /*this.nombre = nombre;

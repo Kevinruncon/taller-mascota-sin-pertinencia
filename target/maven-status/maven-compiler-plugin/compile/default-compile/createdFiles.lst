@@ -1,8 +1,10 @@
 modelo\Propietario.class
 modelo\Historial.class
+vistas\VentanaRegistro$19.class
 dto\DtoConsultaBase.class
 vistas\VentanaServicios$3.class
 vistas\VentanaRegistro$5.class
+vistas\VentanaVacuna$5.class
 vistas\VentanaMedicina$3.class
 vistas\VentanaVacuna$1.class
 vistas\VentanaRegistro$1.class
@@ -53,6 +55,7 @@ vistas\VentanaRegistro.class
 daos\DaoConsultaBase.class
 modelo\Consulta.class
 persistencia\ArchivoUtil.class
+vistas\VentanaVacuna$4.class
 vistas\VentanaRegistro$9.class
 vistas\VentanaMedicina$1.class
 vistas\VentanaPrincipal$1.class

@@ -51,6 +51,7 @@ public abstract class DtoConsultaBase implements Serializable{
         this.idMas = idMas;
     }
     
-    public abstract String mostrar();    
+    public abstract String mostrar();   
+   
     
 }
