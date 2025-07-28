@@ -22,9 +22,8 @@ import vistas.VentanaPrincipal;
  */
 public class VentanaRegistro extends javax.swing.JFrame {
 
-   
     private PropietarioControlador controladorPropietario;
-    private MascotaControlador controladorMascota ;
+    private MascotaControlador controladorMascota;
     private VentanaPrincipal ventanaPrincipal;
 
     /**
@@ -38,7 +37,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
         setTitle("Registro de Clientes");
         setLocationRelativeTo(this);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-       
+
         ListarMascota();
         ListarPropietario();
         DefaultTableModel modeloPropietarios = new DefaultTableModel(
@@ -745,6 +744,18 @@ public class VentanaRegistro extends javax.swing.JFrame {
             return;
         }
 
+        if (!nombreProp.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+            JOptionPane.showMessageDialog(this, "El nombre del propietario debe contener solo letras.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (!documento.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "El documento debe contener solo números.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        if (!telefono.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "El teléfono debe contener solo números.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         DtoPropietario nuevoProp = new DtoPropietario(nombreProp, documento, telefono);
         boolean confirmacion = controladorPropietario.guardarPropietario(nuevoProp);
 
@@ -782,17 +793,17 @@ public class VentanaRegistro extends javax.swing.JFrame {
                 || edadStr == null || edadStr.isBlank()) {
             JOptionPane.showMessageDialog(this, "Todos los campos deben estar llenos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
-        } 
+        }
         int id, edad;
-    try {
-        id = Integer.parseInt(idStr);
-        edad = Integer.parseInt(edadStr);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "ID y Edad deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-        if(id <= 0  || edad <= 0) {
+        try {
+            id = Integer.parseInt(idStr);
+            edad = Integer.parseInt(edadStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID y Edad deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (id <= 0 || edad <= 0) {
             JOptionPane.showMessageDialog(this, "No se pueden agregar datos con valores negativos", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -800,16 +811,15 @@ public class VentanaRegistro extends javax.swing.JFrame {
         DtoPropietario prop = controladorPropietario.buscarPropietario(documento);
         DtoMascota confirmacionMas = controladorMascota.buscarMascota(id);
 
-        if (prop == null ) {
+        if (prop == null) {
             JOptionPane.showMessageDialog(this, " propietario no encontrado, porfavor registrar un propietario primero", "ERROR", JOptionPane.ERROR_MESSAGE);
             return;
-        }else if (confirmacionMas != null){
+        } else if (confirmacionMas != null) {
             JOptionPane.showMessageDialog(this, "Ya existe una mascota con el ID:" + id);
             return;
         }
-        DtoMascota nuevaMascota = new DtoMascota(nombre, especie, edad,id,documento);
+        DtoMascota nuevaMascota = new DtoMascota(nombre, especie, edad, id, documento);
         boolean confirmacion = controladorMascota.guardarMascota(nuevaMascota);
-        
 
         if (confirmacion) {
             JOptionPane.showMessageDialog(this, "La mascota fue guardada correctamente", "Confirmacion", JOptionPane.INFORMATION_MESSAGE);
@@ -855,18 +865,18 @@ public class VentanaRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarResgitroPropActionPerformed
 
     private void bttEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEditarActionPerformed
-   int fila = tablamas.getSelectedRow();
+        int fila = tablamas.getSelectedRow();
         if (fila != -1 && fila >= 0) {
 
-            int id  = Integer.parseInt(tablamas.getValueAt(fila, 0).toString());
+            int id = Integer.parseInt(tablamas.getValueAt(fila, 0).toString());
             DtoMascota mascota = controladorMascota.buscarMascota(id);
-         if (mascota != null) {
-        int idActual = mascota.getId();
-        String nuevoNombre = JOptionPane.showInputDialog(this, "Nuevo nombre:");
-        String nuevaEspecie = JOptionPane.showInputDialog(this, "Nueva Especie:\n(Recomendacion ingresar la especie (Perro o Gato) en mayuscula)");
-        int nuevaEdad = Integer.parseInt(JOptionPane.showInputDialog(this, "Nueva Edad:"));
-        String documento = mascota.getDocumentoPropietario();
-          boolean editado = controladorMascota.editarMascota(idActual, nuevoNombre, nuevaEspecie, nuevaEdad,documento);
+            if (mascota != null) {
+                int idActual = mascota.getId();
+                String nuevoNombre = JOptionPane.showInputDialog(this, "Nuevo nombre:");
+                String nuevaEspecie = JOptionPane.showInputDialog(this, "Nueva Especie:\n(Recomendacion ingresar la especie (Perro o Gato) en mayuscula)");
+                int nuevaEdad = Integer.parseInt(JOptionPane.showInputDialog(this, "Nueva Edad:"));
+                String documento = mascota.getDocumentoPropietario();
+                boolean editado = controladorMascota.editarMascota(idActual, nuevoNombre, nuevaEspecie, nuevaEdad, documento);
                 if (editado) {
                     JOptionPane.showMessageDialog(this, "La mascota fue editado correctamente.");
                     ListarMascota();
@@ -941,7 +951,7 @@ public class VentanaRegistro extends javax.swing.JFrame {
 
     private void ComboEspecialida2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboEspecialida2ActionPerformed
         comboEspecie.removeAllItems(); // limpia
-       
+
         comboEspecie.addItem("Perro");
         comboEspecie.addItem("Gato");
         comboEspecie.addItem("Conejo");
@@ -978,10 +988,10 @@ public class VentanaRegistro extends javax.swing.JFrame {
             String documento = tablePropietario.getValueAt(fila, 1).toString();
             DtoPropietario prop = controladorPropietario.buscarPropietario(documento);
             if (prop != null) {
-        String DocumentoActual = prop.getDocumento();
-        String nuevoNombre = JOptionPane.showInputDialog(this, "Nuevo nombre:");
-        String nuevaTelefono = JOptionPane.showInputDialog(this, "Nueva Telefono:");
-          boolean editado = controladorPropietario.editarPropietario(DocumentoActual, nuevoNombre, nuevaTelefono);
+                String DocumentoActual = prop.getDocumento();
+                String nuevoNombre = JOptionPane.showInputDialog(this, "Nuevo nombre:");
+                String nuevaTelefono = JOptionPane.showInputDialog(this, "Nueva Telefono:");
+                boolean editado = controladorPropietario.editarPropietario(DocumentoActual, nuevoNombre, nuevaTelefono);
                 if (editado) {
                     JOptionPane.showMessageDialog(this, "El propietario fue editado correctamente.");
                     ListarPropietario();
@@ -1007,12 +1017,12 @@ public class VentanaRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_comboEspecieActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-    ListarMascota();
+        ListarMascota();
 
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-ListarPropietario();
+        ListarPropietario();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void limpiarCampos() {

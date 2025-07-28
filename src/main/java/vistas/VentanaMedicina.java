@@ -47,7 +47,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
         modelo.addRow(new Object[]{vet2.getNombre(), vet2.getEspecialidad()});
         tablaMedicina.setModel(modelo);
         DefaultTableModel modeloCons = new DefaultTableModel(new Object[]{"Fecha", "Codigo", "Nombre Mascota", "Documento propietario",
-             "Nombre Veterinario", "Especialidad Veterinario", "Diagnostico", "Tratamiento"}, 0);
+            "Nombre Veterinario", "Especialidad Veterinario", "Diagnostico", "Tratamiento"}, 0);
         tablaConsulta.setModel(modeloCons);
     }
 
@@ -69,7 +69,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
     public void listarConsultas() {
         String[] columnas = {
             "Fecha", "Codigo", "Nombre Mascota", "Id Mascota", "Documento propietario",
-             "Nombre Veterinario", "Especialidad Veterinario", "Diagnostico", "Tratamiento"
+            "Nombre Veterinario", "Especialidad Veterinario", "Diagnostico", "Tratamiento"
         };
 
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
@@ -379,13 +379,13 @@ public class VentanaMedicina extends javax.swing.JFrame {
             return;
         }
 
-           int id;
-    try {
-        id = Integer.parseInt(idMas);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "ID deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        int id;
+        try {
+            id = Integer.parseInt(idMas);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "ID deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if (fila == -1) {
             JOptionPane.showMessageDialog(this, "Por favor selecciona un veterinario para continuar con el registro.");
             return;
@@ -449,7 +449,7 @@ public class VentanaMedicina extends javax.swing.JFrame {
         }
 
         String codigo = tablaConsulta.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
-        int idMas = Integer.parseInt(tablaConsulta.getValueAt(fila, 3).toString());
+        //int idMas = Integer.parseInt(tablaConsulta.getValueAt(fila, 3).toString());
 
         DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
 

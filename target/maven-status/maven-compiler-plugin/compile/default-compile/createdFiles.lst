@@ -15,6 +15,7 @@ vistas\VentanaRegistro$15.class
 vistas\VentanaRegistro$8.class
 modelo\Vacuna.class
 vistas\VentanaPrincipal$3.class
+vistas\VentanaVacuna$8.class
 controladores\VacunaControlador.class
 vistas\VentanaRegistro$12.class
 vistas\VentanaMedicina$6.class
@@ -46,6 +47,7 @@ vistas\VentanaRegistro$14.class
 vistas\VentanaRegistro$10.class
 dto\DtoPropietario.class
 vistas\VentanaRegistro$17.class
+vistas\VentanaVacuna$6.class
 vistas\VentanaRegistro$3.class
 vistas\VentanaRegistro$6.class
 modelo\Mascotas.class
@@ -60,6 +62,7 @@ vistas\VentanaVacuna$4.class
 vistas\VentanaRegistro$9.class
 vistas\VentanaMedicina$1.class
 vistas\VentanaPrincipal$1.class
+vistas\VentanaVacuna$7.class
 controladores\MascotaControlador.class
 vistas\VentanaRegistro$16.class
 vistas\VentanaServicios.class

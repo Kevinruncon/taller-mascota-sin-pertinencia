@@ -91,8 +91,11 @@ public void listarVacunas() {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaVacunas = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnActualizarVacunas = new javax.swing.JButton();
+        btnEditarVacuna = new javax.swing.JButton();
+        btnBuscarVacuna = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnMenu = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,7 +128,7 @@ public void listarVacunas() {
 
         jLabel3.setText("Id Mascota:");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -151,25 +154,29 @@ public void listarVacunas() {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(68, 68, 68)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtLoteVacuna)
+                                    .addComponent(txtIdMascotaVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(txtProximaDosisVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2))
-                        .addGap(52, 52, 52)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTipoVacuna)
-                            .addComponent(txtLoteVacuna)
-                            .addComponent(txtCodigoVacuna)
-                            .addComponent(txtIdMascotaVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61)
-                        .addComponent(jButton1)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addComponent(txtProximaDosisVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTipoVacuna, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                    .addComponent(txtCodigoVacuna, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,28 +184,24 @@ public void listarVacunas() {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtIdMascotaVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtIdMascotaVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(txtCodigoVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtLoteVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTipoVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtProximaDosisVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtProximaDosisVacuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab1", jPanel3);
+        jTabbedPane1.addTab("Registro de Vacunas", jPanel3);
 
         tablaVacunas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,10 +216,31 @@ public void listarVacunas() {
         ));
         jScrollPane2.setViewportView(tablaVacunas);
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizarVacunas.setText("Actualizar");
+        btnActualizarVacunas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnActualizarVacunasActionPerformed(evt);
+            }
+        });
+
+        btnEditarVacuna.setText("Editar");
+        btnEditarVacuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarVacunaActionPerformed(evt);
+            }
+        });
+
+        btnBuscarVacuna.setText("Buscar");
+        btnBuscarVacuna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarVacunaActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -226,25 +250,35 @@ public void listarVacunas() {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jButton2)
+                .addGap(25, 25, 25)
+                .addComponent(btnActualizarVacunas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEditarVacuna)
+                .addGap(12, 12, 12)
+                .addComponent(btnBuscarVacuna)
+                .addGap(12, 12, 12)
+                .addComponent(btnEliminar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnActualizarVacunas)
+                    .addComponent(btnEditarVacuna)
+                    .addComponent(btnBuscarVacuna)
+                    .addComponent(btnEliminar))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel4);
+        jTabbedPane1.addTab("Gestion de Vacunas", jPanel4);
 
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnMenuActionPerformed(evt);
             }
         });
 
@@ -253,9 +287,11 @@ public void listarVacunas() {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3))
+                .addGap(12, 12, 12)
+                .addComponent(btnMenu)
+                .addGap(3, 3, 3))
             .addComponent(jTabbedPane1)
         );
         jPanel2Layout.setVerticalGroup(
@@ -264,7 +300,9 @@ public void listarVacunas() {
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jButton3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnMenu)
+                        .addGap(17, 17, 17)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane1))
         );
@@ -292,17 +330,25 @@ public void listarVacunas() {
     }//GEN-LAST:event_txtLoteVacunaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    int idMas = Integer.parseInt(txtIdMascotaVacuna.getText());
+    String idMas = txtIdMascotaVacuna.getText();
     String codigo = txtCodigoVacuna.getText();
     String lote = txtLoteVacuna.getText();
     String tipo = txtTipoVacuna.getText();
     String proximaDosis = txtProximaDosisVacuna.getText();
 
-    if (idMas <= 0 || codigo == null || codigo.isBlank() || lote == null || lote.isBlank() || tipo == null || tipo.isBlank()
+    if (idMas == null || idMas.isBlank() || codigo == null || codigo.isBlank() || lote == null || lote.isBlank() || tipo == null || tipo.isBlank()
          || proximaDosis == null || proximaDosis.isBlank()) {
         JOptionPane.showMessageDialog(this, "Por favor completa todos los campos correctamente.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }    
+       int id;
+    try {
+        id = Integer.parseInt(idMas);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "ID deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
     LocalDate proximaDosis1;
     try {
         proximaDosis1 = LocalDate.parse(proximaDosis); // Intenta convertir
@@ -311,9 +357,9 @@ public void listarVacunas() {
     return; // Salir del método si hay error
     }
 
-    DtoMascota m = controladorMascota.buscarMascota(idMas);
+    DtoMascota m = controladorMascota.buscarMascota(id);
     if (m == null) {
-        JOptionPane.showMessageDialog(this, "No existe la mascota con el ID: " + idMas);
+        JOptionPane.showMessageDialog(this, "No existe la mascota con el ID: " + id);
         return;
     }
 
@@ -324,7 +370,7 @@ public void listarVacunas() {
         String fechaHoy = LocalDate.now().toString(); 
         
         
-        DtoVacuna nueva = new DtoVacuna(tipo,lote, proximaDosis1.toString(), fechaHoy, idMas, codigo);
+        DtoVacuna nueva = new DtoVacuna(tipo,lote, proximaDosis1.toString(), fechaHoy, id, codigo);
         
 
         boolean guardado = controladorConsultaBase.agregar(nueva,DtoVacuna.class ); 
@@ -342,15 +388,116 @@ public void listarVacunas() {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnActualizarVacunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarVacunasActionPerformed
 listarVacunas();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnActualizarVacunasActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
     this.setVisible(false);
     ventanaServicios.setVisible(true);
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+       int fila = tablaVacunas.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona una Vacuna para eliminar.");
+            return;
+        }
+
+        String codigo = tablaVacunas.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
+        int idMas = Integer.parseInt(tablaVacunas.getValueAt(fila, 2).toString());
+
+        DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoVacuna.class);
+
+        if (confirmar != null) {
+            boolean eliminado = controladorConsultaBase.eliminarPorIdentificacion(codigo, DtoVacuna.class);
+
+            if (eliminado) {
+                listarVacunas(); // refrescar tabla
+                JOptionPane.showMessageDialog(this, "La Vacuna se eliminó correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró una Vacuna con ese código.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró la Vacuna seleccionada.");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVacunaActionPerformed
+       int fila = tablaVacunas.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona una Vacuna para continuar.");
+            return;
+        }
+        String codigo = tablaVacunas.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
+
+        DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoVacuna.class);
+
+        if (confirmar != null) {
+            DtoVacuna nueva = (DtoVacuna) confirmar;
+            String lote = JOptionPane.showInputDialog(this, "Ingrese el nuevo Lote: ");
+            String tipo = JOptionPane.showInputDialog(this, "Ingrese el nuevo Tipo: ");
+            String nuevaFecha = JOptionPane.showInputDialog(this,"Ingrese la Fecha para la proxima dosis:").trim();
+           
+            if (lote != null && !lote.isBlank() && tipo != null && !tipo.isBlank() && nuevaFecha != null) {
+           
+            if (!tipo.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+            JOptionPane.showMessageDialog(this, "El nombre del propietario debe contener solo letras.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+            LocalDate fecha;
+            try{
+                fecha = LocalDate.parse(nuevaFecha);
+            }catch (DateTimeParseException e){
+                JOptionPane.showMessageDialog(this, "Formato de fecha inválido. Usa el formato AAAA-MM-DD.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+             
+               nueva.setLote(lote);
+               nueva.setTipo(tipo);
+               nueva.setProximaDosis(fecha.toString());
+
+                boolean guardado = controladorConsultaBase.actualizarConsulta(nueva, DtoVacuna.class);
+
+                if (guardado) {
+                    listarVacunas(); // Refrescar tabla
+                    JOptionPane.showMessageDialog(this, "La Vacuna se edito correctamente.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Hubo un error al editar la Vacuna.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.");
+            }
+        }
+        
+
+    }//GEN-LAST:event_btnEditarVacunaActionPerformed
+
+    private void btnBuscarVacunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVacunaActionPerformed
+        String codigo = JOptionPane.showInputDialog(this, "Ingrese el codigo de la consulta que desea buscar: ");
+        if (codigo == null || codigo.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Porfavor llenar los campos para poder buscar la Vacuna.");
+            return;
+        }
+
+        DtoConsultaBase existente = controladorConsultaBase.buscarConsulta(codigo, DtoVacuna.class);
+
+        if (existente == null) {
+            JOptionPane.showMessageDialog(this, "no existe ninguna Vacuna con el codigo: " + codigo);
+            return;
+        }
+        DtoVacuna vacuna = (DtoVacuna) existente;
+           //    "Fecha", "Codigo", "Id Mascota" , "Tipo", "Lote", "Proxima Dosis"
+
+        JOptionPane.showMessageDialog(this, "Fecha: " + vacuna.getFecha() + "\nCodigo: " + vacuna.getCodigo()
+                +  "\nId Mascota: " + vacuna.getIdMas() + "\nTipo Vacuna: "
+                + vacuna.getTipo()+ "\nLote Vacuna: " + vacuna.getLote() + "\nProxima Dosis: " + vacuna.getProximaDosis());
+
+
+    }//GEN-LAST:event_btnBuscarVacunaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,14 +520,17 @@ listarVacunas();
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create abtnActualizaray the form */
 //        java.awt.EventQueue.invokeLater(() -> new VentanaVacuna().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizarVacunas;
+    private javax.swing.JButton btnBuscarVacuna;
+    private javax.swing.JButton btnEditarVacuna;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnMenu;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
