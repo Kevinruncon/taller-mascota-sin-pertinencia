@@ -41,11 +41,13 @@ vistas\VentanaRegistro$7.class
 vistas\VentanaPrincipal$2.class
 controladores\ControladorConsultaBase.class
 dto\DtoVacuna.class
+vistas\VentanaHistorial$2.class
 vistas\VentanaVacuna.class
 vistas\VentanaMedicina$5.class
 vistas\VentanaRegistro$14.class
 vistas\VentanaRegistro$10.class
 dto\DtoPropietario.class
+vistas\VentanaHistorial.class
 vistas\VentanaRegistro$17.class
 vistas\VentanaVacuna$6.class
 vistas\VentanaRegistro$3.class
@@ -65,10 +67,13 @@ vistas\VentanaPrincipal$1.class
 vistas\VentanaVacuna$7.class
 controladores\MascotaControlador.class
 vistas\VentanaRegistro$16.class
+vistas\VentanaHistorial$1.class
 vistas\VentanaServicios.class
 vistas\VentanaRegistro$2.class
 daos\DaoConsulta.class
 modelo\Persona.class
 vistas\VentanaMedicina$4.class
 vistas\VentanaServicios$1.class
+daos\DaoHistorial.class
 vistas\VentanaMedicina$7.class
+controladores\ControladorHistorial.class

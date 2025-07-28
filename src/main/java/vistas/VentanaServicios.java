@@ -13,8 +13,10 @@ public class VentanaServicios extends javax.swing.JFrame {
     private VentanaPrincipal ventanaPrincipal;
     private VentanaVacuna ventanaVacuna;
     private ControladorConsultaBase controladorConsultaBase;
+    private VentanaHistorial ventanaHistorial;
   public VentanaServicios(VentanaPrincipal ventanaPrincipal, MascotaControlador controladorMascota, ControladorConsultaBase controladorConsultaBase ) {
       this.ventanaMedicina = ventanaMedicina;
+      this.ventanaHistorial = ventanaHistorial;
         this.ventanaPrincipal = ventanaPrincipal;
         this.controladorMascota = controladorMascota ;
         this.ventanaVacuna = ventanaVacuna;
@@ -26,16 +28,18 @@ public class VentanaServicios extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 //        setVisible(true);
         // Crear el nodo raíz del árbol con el nombre "Carpeta"
-        DefaultMutableTreeNode carpeta = new DefaultMutableTreeNode("Carpeta");
+        DefaultMutableTreeNode carpeta = new DefaultMutableTreeNode("Atencion Medica");
 
         // Crear nodos hijos para los diferentes servicios
         DefaultMutableTreeNode medicina = new DefaultMutableTreeNode("Medicina General");
         DefaultMutableTreeNode vacuna = new DefaultMutableTreeNode("Vacuna");
+        DefaultMutableTreeNode historial = new DefaultMutableTreeNode("Historial");
         DefaultMutableTreeNode salir = new DefaultMutableTreeNode("Salir");
 
         // Agregar los nodos hijos al nodo raíz (carpeta)
         carpeta.add(medicina);
         carpeta.add(vacuna);
+        carpeta.add(historial);
         carpeta.add(salir);
 
         // Crear el modelo del árbol usando el nodo raíz y asignarlo al JTree
@@ -148,10 +152,17 @@ public class VentanaServicios extends javax.swing.JFrame {
                         this.setVisible(false);
                         ventanaVacuna.setVisible(true);
                         break;
+                    case "Historial": 
+                        if(ventanaHistorial == null){
+                            ventanaHistorial = new VentanaHistorial(this);
+                        }
+                        this.setVisible(false);
+                        ventanaHistorial.setVisible(true);
                     case "Salir":
                         int confirmar = JOptionPane.showConfirmDialog(null, "¿Deseas salir?", "Confirmación", JOptionPane.YES_NO_OPTION);
                         if (confirmar == JOptionPane.YES_OPTION) System.exit(0);
                         break;
+                    
                 } 
 
     }//GEN-LAST:event_serviciosMouseClicked

@@ -1,11 +1,13 @@
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\com\mycompany\registromascotas\RegistroMascotas.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\ConsultaControlador.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\ControladorConsultaBase.java
+C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\ControladorHistorial.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\MascotaControlador.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\PropietarioControlador.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\controladores\VacunaControlador.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoConsulta.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoConsultaBase.java
+C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoHistorial.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoMascotas.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoPropietario.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\daos\DaoVacuna.java
@@ -28,6 +30,7 @@ C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\mode
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\persistencia\ArchivoManager.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\persistencia\ArchivoUtil.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\persistencia\GestorPersistencia.java
+C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\vistas\VentanaHistorial.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\vistas\VentanaMedicina.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\vistas\VentanaPrincipal.java
 C:\Users\Kevin\OneDrive\Desktop\programacion\registroMascotas\src\main\java\vistas\VentanaRegistro.java
