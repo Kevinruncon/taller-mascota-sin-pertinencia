@@ -158,6 +158,7 @@ public class VentanaServicios extends javax.swing.JFrame {
                         }
                         this.setVisible(false);
                         ventanaHistorial.setVisible(true);
+                        break;
                     case "Salir":
                         int confirmar = JOptionPane.showConfirmDialog(null, "¿Deseas salir?", "Confirmación", JOptionPane.YES_NO_OPTION);
                         if (confirmar == JOptionPane.YES_OPTION) System.exit(0);

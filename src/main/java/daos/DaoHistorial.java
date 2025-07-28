@@ -54,8 +54,7 @@ public class DaoHistorial {
 
         // 3. Si no se encuentra, retornar vacío
         if (mascota == null) {
-            System.out.println("❌ Mascota no encontrada con ID: " + idMascota);
-            return historial;
+         return historial;
         }
 
         // 4. Cargar historial desde archivo combinado

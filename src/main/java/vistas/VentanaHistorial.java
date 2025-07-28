@@ -12,7 +12,6 @@ import dto.DtoVacuna;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Kevin
@@ -21,11 +20,13 @@ public class VentanaHistorial extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaHistorial.class.getName());
     private VentanaServicios ventanaServicios;
+    private ControladorHistorial controladorHistorial;
     /**
      * Creates new form VentanaHistorial
      */
     public VentanaHistorial(VentanaServicios ventanaServicios) {
         this.ventanaServicios = ventanaServicios;
+        this.controladorHistorial = new ControladorHistorial();
         initComponents();
     }
    /* private void listarHistorial(int idMascota) {
@@ -72,7 +73,6 @@ public class VentanaHistorial extends javax.swing.JFrame {
         "Nombre Mascota", "Documento Propietario", "Fecha", "Código", "Tipo", "Diagnóstico / Tipo Vacuna", "Tratamiento / Próxima Dosis"
     });
 
-    ControladorHistorial controladorHistorial = new ControladorHistorial();
     ArrayList<DtoConsultaBase> historial = controladorHistorial.obtenerHistorial(idMascota);
     DtoMascota mascota = controladorHistorial.obtenerMascota(idMascota); // Obtener la mascota
 
