@@ -23,13 +23,13 @@ import dto.DtoConsulta;
  * @author Kevin
  */
 public class VentanaMedicina extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaMedicina.class.getName());
-    private  ControladorConsultaBase controladorConsultaBase ;
+    private ControladorConsultaBase controladorConsultaBase;
     private VentanaServicios ventanaServicios;
     private MascotaControlador controladorMascota;
-    
-    public VentanaMedicina(VentanaServicios ventanaServicios,MascotaControlador controladorMascota, ControladorConsultaBase controladorConsultaBase) {
+
+    public VentanaMedicina(VentanaServicios ventanaServicios, MascotaControlador controladorMascota, ControladorConsultaBase controladorConsultaBase) {
         this.ventanaServicios = ventanaServicios;
         this.controladorMascota = controladorMascota;
         this.controladorConsultaBase = controladorConsultaBase;
@@ -43,15 +43,15 @@ public class VentanaMedicina extends javax.swing.JFrame {
         modelo.addColumn("Especialidad");
         Veterinario vet1 = new Veterinario("Dra. Ana Gómez", "Medicina Interna");
         Veterinario vet2 = new Veterinario("Dr. Luis Torres", "Cirugía");
-        modelo.addRow(new Object[]{vet1.getNombre(),vet1.getEspecialidad()});
-        modelo.addRow(new Object[]{vet2.getNombre(),vet2.getEspecialidad()});
+        modelo.addRow(new Object[]{vet1.getNombre(), vet1.getEspecialidad()});
+        modelo.addRow(new Object[]{vet2.getNombre(), vet2.getEspecialidad()});
         tablaMedicina.setModel(modelo);
-        DefaultTableModel modeloCons = new  DefaultTableModel(new Object[]{"Fecha", "Codigo", "Nombre Mascota", "Documento propietario"
-        , "Nombre Veterinario","Especialidad Veterinario", "Diagnostico","Tratamiento"}, 0);
+        DefaultTableModel modeloCons = new DefaultTableModel(new Object[]{"Fecha", "Codigo", "Nombre Mascota", "Documento propietario",
+             "Nombre Veterinario", "Especialidad Veterinario", "Diagnostico", "Tratamiento"}, 0);
         tablaConsulta.setModel(modeloCons);
     }
-    
-   /* public void ListarConsulta(){
+
+    /* public void ListarConsulta(){
             String[] columnas = {"Fecha", "Codigo", "Nombre Mascota", "Documento propietario"
         , "Nombre Veterinario","Especialidad Veterinario", "Diagnostico","Tratamiento"};
           DefaultTableModel modeloCons = new DefaultTableModel(columnas, 0);
@@ -67,42 +67,40 @@ public class VentanaMedicina extends javax.swing.JFrame {
          tablaConsulta.setModel(modeloCons);
     }*/
     public void listarConsultas() {
-    String[] columnas = {
-        "Fecha", "Codigo", "Nombre Mascota", "Id Mascota" , "Documento propietario"
-        , "Nombre Veterinario","Especialidad Veterinario", "Diagnostico","Tratamiento"
-    };
+        String[] columnas = {
+            "Fecha", "Codigo", "Nombre Mascota", "Id Mascota", "Documento propietario",
+             "Nombre Veterinario", "Especialidad Veterinario", "Diagnostico", "Tratamiento"
+        };
 
-    DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-    // Usar el controlador en lugar del DAO directamente
-    ArrayList<DtoConsultaBase> historial = controladorConsultaBase.listar();
+        // Usar el controlador en lugar del DAO directamente
+        ArrayList<DtoConsultaBase> historial = controladorConsultaBase.listar();
 
-    for (DtoConsultaBase registro : historial) {
-        if (registro instanceof DtoConsulta) {
-            DtoConsulta consulta = (DtoConsulta) registro;
+        for (DtoConsultaBase registro : historial) {
+            if (registro instanceof DtoConsulta) {
+                DtoConsulta consulta = (DtoConsulta) registro;
 
-            Object[] fila = {
-                consulta.getFecha(),
-                consulta.getCodigo(),
-                consulta.getNombreMasCons(),
-                consulta.getIdMas(),
-                consulta.getDocumentoPropCons(),
-                consulta.getVeterinario().getNombre(),
-                consulta.getVeterinario().getEspecialidad(),
-                consulta.getDiagnostico(),
-                consulta.getTratamiento()
-            };
+                Object[] fila = {
+                    consulta.getFecha(),
+                    consulta.getCodigo(),
+                    consulta.getNombreMasCons(),
+                    consulta.getIdMas(),
+                    consulta.getDocumentoPropCons(),
+                    consulta.getVeterinario().getNombre(),
+                    consulta.getVeterinario().getEspecialidad(),
+                    consulta.getDiagnostico(),
+                    consulta.getTratamiento()
+                };
 
-            modelo.addRow(fila);
+                modelo.addRow(fila);
+            }
         }
+
+        tablaConsulta.setModel(modelo);
     }
 
-    tablaConsulta.setModel(modelo);
-}
-
-
-            
-     /**
+    /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
@@ -133,7 +131,8 @@ public class VentanaMedicina extends javax.swing.JFrame {
         tablaConsulta = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEditarConsultas = new javax.swing.JButton();
+        btnBuscarConsulta = new javax.swing.JButton();
         btnVolverVentanPrincipal = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
@@ -270,10 +269,17 @@ public class VentanaMedicina extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarConsultas.setText("Editar");
+        btnEditarConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEditarConsultasActionPerformed(evt);
+            }
+        });
+
+        btnBuscarConsulta.setText("Buscar");
+        btnBuscarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarConsultaActionPerformed(evt);
             }
         });
 
@@ -285,25 +291,28 @@ public class VentanaMedicina extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(150, 150, 150)
                 .addComponent(btnActualizar)
-                .addGap(32, 32, 32)
+                .addGap(58, 58, 58)
                 .addComponent(btnEliminar)
-                .addGap(31, 31, 31)
-                .addComponent(jButton2)
+                .addGap(56, 56, 56)
+                .addComponent(btnEditarConsultas)
+                .addGap(67, 67, 67)
+                .addComponent(btnBuscarConsulta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar)
-                    .addComponent(jButton2))
-                .addGap(47, 47, 47))
+                    .addComponent(btnEditarConsultas)
+                    .addComponent(btnBuscarConsulta))
+                .addGap(28, 28, 28))
         );
 
         jTabbedPane1.addTab("Gestion de Consultas", jPanel4);
@@ -357,64 +366,60 @@ public class VentanaMedicina extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-  
-    
+
     private void btnMedicinaGurdarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMedicinaGurdarActionPerformed
-    int idMas = Integer.parseInt(txtMedicinaIdMas.getText());
-    String codigo = txtMedicinaCodigo.getText();
-    String tratamiento = txtMedicinaTartamiento.getText();
-    String diagnostico = txtMedicinaDiagnostico.getText();
-    int fila = tablaMedicina.getSelectedRow();
+        String idMas = txtMedicinaIdMas.getText();
+        String codigo = txtMedicinaCodigo.getText();
+        String tratamiento = txtMedicinaTartamiento.getText();
+        String diagnostico = txtMedicinaDiagnostico.getText();
+        int fila = tablaMedicina.getSelectedRow();
 
-    if (idMas <= 0 || codigo.isBlank() || tratamiento.isBlank() || diagnostico.isBlank()) {
-        JOptionPane.showMessageDialog(this, "Por favor completa todos los campos correctamente.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    if (fila == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor selecciona un veterinario para continuar con el registro.");
-        return;
-    }
-
-    DtoMascota m = controladorMascota.buscarMascota(idMas);
-    if (m == null) {
-        JOptionPane.showMessageDialog(this, "No existe la mascota con el ID: " + idMas);
-        return;
-    }
-
-    String nombre = tablaMedicina.getValueAt(fila, 0).toString();
-    String especialidad = tablaMedicina.getValueAt(fila, 1).toString();
-    Veterinario vetFin = new Veterinario(nombre, especialidad);
-
-    // Verificar si ya existe una consulta con ese código
-    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo,DtoConsulta.class);
-
-    if (confirmar == null) {
-        // Crear la nueva consulta
-        String fechaHoy = LocalDate.now().toString(); // o usa un DatePicker si lo tienes
-        DtoConsulta nueva = new DtoConsulta(codigo, vetFin, m.getDocumentoPropietario(), m.getNombre(), diagnostico, tratamiento, fechaHoy, idMas);
-
-        boolean guardado = controladorConsultaBase.agregar(nueva,DtoConsulta.class);
-
-        if (guardado) {
-            listarConsultas(); // Refrescar tabla
-            JOptionPane.showMessageDialog(this, "La consulta se guardó correctamente.");
-        } else {
-            JOptionPane.showMessageDialog(this, "Hubo un error al guardar la consulta.");
+        if (idMas == null || idMas.isBlank() || codigo.isBlank() || tratamiento.isBlank() || diagnostico.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos correctamente.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Ya existe una consulta con el mismo código.");
+
+           int id;
+    try {
+        id = Integer.parseInt(idMas);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "ID deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona un veterinario para continuar con el registro.");
+            return;
+        }
 
+        DtoMascota m = controladorMascota.buscarMascota(id);
+        if (m == null) {
+            JOptionPane.showMessageDialog(this, "No existe la mascota con el ID: " + id);
+            return;
+        }
 
+        String nombre = tablaMedicina.getValueAt(fila, 0).toString();
+        String especialidad = tablaMedicina.getValueAt(fila, 1).toString();
+        Veterinario vetFin = new Veterinario(nombre, especialidad);
 
-    
-    
-    
+        // Verificar si ya existe una consulta con ese código
+        DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
 
+        if (confirmar == null) {
+            // Crear la nueva consulta
+            String fechaHoy = LocalDate.now().toString(); // o usa un DatePicker si lo tienes
+            DtoConsulta nueva = new DtoConsulta(codigo, vetFin, m.getDocumentoPropietario(), m.getNombre(), diagnostico, tratamiento, fechaHoy, id);
 
+            boolean guardado = controladorConsultaBase.agregar(nueva, DtoConsulta.class);
 
+            if (guardado) {
+                listarConsultas(); // Refrescar tabla
+                JOptionPane.showMessageDialog(this, "La consulta se guardó correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Hubo un error al guardar la consulta.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Ya existe una consulta con el mismo código.");
+        }
 
 
     }//GEN-LAST:event_btnMedicinaGurdarActionPerformed
@@ -425,88 +430,108 @@ public class VentanaMedicina extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMedicinaIdMasActionPerformed
 
     private void btnVolverVentanPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverVentanPrincipalActionPerformed
-    this.setVisible(false);
-   ventanaServicios.setVisible(true);
+        this.setVisible(false);
+        ventanaServicios.setVisible(true);
 
     }//GEN-LAST:event_btnVolverVentanPrincipalActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-    listarConsultas();
+        listarConsultas();
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-    int fila = tablaConsulta.getSelectedRow();
+        int fila = tablaConsulta.getSelectedRow();
 
-if (fila == -1) {
-    JOptionPane.showMessageDialog(this, "Por favor selecciona una consulta para eliminar.");
-    return;
-}
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona una consulta para eliminar.");
+            return;
+        }
 
-String codigo = tablaConsulta.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
-int idMas = Integer.parseInt(tablaConsulta.getValueAt(fila, 3).toString());
+        String codigo = tablaConsulta.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
+        int idMas = Integer.parseInt(tablaConsulta.getValueAt(fila, 3).toString());
 
-DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
+        DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
 
-if (confirmar != null) {
-    boolean eliminado = controladorConsultaBase.eliminarPorIdentificacion(codigo, DtoConsulta.class);
+        if (confirmar != null) {
+            boolean eliminado = controladorConsultaBase.eliminarPorIdentificacion(codigo, DtoConsulta.class);
 
-    if (eliminado) {
-        listarConsultas(); // refrescar tabla
-        JOptionPane.showMessageDialog(this, "La consulta se eliminó correctamente.");
-    } else {
-        JOptionPane.showMessageDialog(this, "No se encontró una consulta con ese código.");
-    }
-} else {
-    JOptionPane.showMessageDialog(this, "No se encontró la consulta seleccionada.");
-}
-
+            if (eliminado) {
+                listarConsultas(); // refrescar tabla
+                JOptionPane.showMessageDialog(this, "La consulta se eliminó correctamente.");
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró una consulta con ese código.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró la consulta seleccionada.");
+        }
 
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
+    private void btnEditarConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarConsultasActionPerformed
 
-    int fila = tablaMedicina.getSelectedRow();
+        int fila = tablaMedicina.getSelectedRow();
 
-    if (fila == -1) {
-        JOptionPane.showMessageDialog(this, "Por favor selecciona una Consulta para continuar.");
-        return;
-    }
-    String codigo = tablaConsulta.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
-
-    
-
-    DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
-
-    if (confirmar != null) {
-        DtoConsulta  nueva = (DtoConsulta) confirmar;
-        String diagnostico = JOptionPane.showInputDialog(this,"Ingrese el nuevo diagnostico: ");
-        String tratamiento = JOptionPane.showInputDialog(this,"Ingrese el nuevo tratamiento: ");
-    
-        if (diagnostico != null && !diagnostico.isBlank() && tratamiento != null && !tratamiento.isBlank()) {
-          nueva.setDiagnostico(diagnostico);
-          nueva.setTratamiento(tratamiento);
-
-        boolean guardado = controladorConsultaBase.actualizarConsulta(nueva,DtoConsulta.class);
-
-        if (guardado) {
-            listarConsultas(); // Refrescar tabla
-            JOptionPane.showMessageDialog(this, "La consulta se edito correctamente.");
-        } else {
-            JOptionPane.showMessageDialog(this, "Hubo un error al editar la consulta.");
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor selecciona una Consulta para continuar.");
+            return;
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.");
-    }
-    }
+        String codigo = tablaConsulta.getValueAt(fila, 1).toString().trim(); // asegúrate de eliminar espacios
 
+        DtoConsultaBase confirmar = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
+
+        if (confirmar != null) {
+            DtoConsulta nueva = (DtoConsulta) confirmar;
+            String diagnostico = JOptionPane.showInputDialog(this, "Ingrese el nuevo diagnostico: ");
+            String tratamiento = JOptionPane.showInputDialog(this, "Ingrese el nuevo tratamiento: ");
+
+            if (diagnostico != null && !diagnostico.isBlank() && tratamiento != null && !tratamiento.isBlank()) {
+                nueva.setDiagnostico(diagnostico);
+                nueva.setTratamiento(tratamiento);
+
+                boolean guardado = controladorConsultaBase.actualizarConsulta(nueva, DtoConsulta.class);
+
+                if (guardado) {
+                    listarConsultas(); // Refrescar tabla
+                    JOptionPane.showMessageDialog(this, "La consulta se edito correctamente.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Hubo un error al editar la consulta.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Todos los campos deben estar completos.");
+            }
+        }
 
 //    
 
+    }//GEN-LAST:event_btnEditarConsultasActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnBuscarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarConsultaActionPerformed
+
+        String codigo = JOptionPane.showInputDialog(this, "Ingrese el codigo de la consulta que desea buscar: ");
+        if (codigo == null || codigo.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Porfavor llenar los campos para poder buscar la Consulta.");
+            return;
+        }
+
+        DtoConsultaBase existente = controladorConsultaBase.buscarConsulta(codigo, DtoConsulta.class);
+
+        if (existente == null) {
+            JOptionPane.showMessageDialog(this, "no existe ninguna consulta con el codigo: " + codigo);
+            return;
+        }
+        DtoConsulta consulta = (DtoConsulta) existente;
+        // String fecha = consulta.getFecha().toString().trim();
+        /*  "Fecha", "Codigo", "Nombre Mascota", "Id Mascota" , "Documento propietario"
+        , "Nombre Veterinario","Especialidad Veterinario", "Diagnostico","Tratamiento"
+    };*/
+        JOptionPane.showMessageDialog(this, "Fecha: " + consulta.getFecha() + "\nCodigo: " + consulta.getCodigo()
+                + "\nNombre Mascota: " + consulta.getNombreMasCons() + "\nId Mascota: " + consulta.getIdMas() + "\nDocumento Propietario: "
+                + consulta.getDocumentoPropCons() + "\nNombre Veterinario: " + consulta.getVeterinario().getNombre() + "\nEspecialidad Propietario: " + consulta.getVeterinario().getEspecialidad()
+                + "\nDiagnostico: " + consulta.getDiagnostico() + "\nTratamiento: " + consulta.getTratamiento());
+
+    }//GEN-LAST:event_btnBuscarConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -535,11 +560,12 @@ if (confirmar != null) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBuscarConsulta;
+    private javax.swing.JButton btnEditarConsultas;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnMedicinaGurdar;
     private javax.swing.JButton btnVolverVentanPrincipal;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
